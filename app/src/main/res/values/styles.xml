@@ -3,6 +3,31 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
+        <!-- <item name="android:actionBarStyle">@style/customActionBar</item> -->
+        <!-- Support library compatibility -->
+        <item name="actionBarStyle">@style/customActionBar</item>
+
+        <item name="android:buttonStyle">@style/button_custom</item>
+    </style>
+
+    <style name="customActionBar" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+        <!-- <item name="android:background">@color/red</item> -->
+        <!-- Support library compatibility -->
+        <item name="background">@color/red</item>
+    </style>
+    <!-- custom button -->
+    <style name="button_custom" parent="@android:style/Widget.Button">
+        <item name="android:background">@drawable/button_custom</item>
+        <item name="android:textColor">#FFFFFFFF</item>
+        <item name="android:paddingLeft">15dp</item>
+        <item name="android:paddingRight">15dp</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingBottom">10dp</item>
+        <!--
+        <item name="android:shadowColor">#441a0c1b</item>
+        <item name="android:shadowDx">1</item>
+        <item name="android:shadowDy">1</item>
+        <item name="android:shadowRadius">0.2</item> -->
     </style>
 
 </resources>

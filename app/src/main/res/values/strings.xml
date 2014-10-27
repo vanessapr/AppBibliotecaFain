@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Biblioteca FAIN</string>
+    <string name="app_name">Catálogo Móvil</string>
+    <string name="welcome">Bienvenidos al catálogo móvil de la Biblioteca Especializada de la Facultad de Ingeniería.</string>
+    <string name="copyright">© Todos los derechos reservados - 2014</string>
+    <string name="txt_busqueda">Escriba lo que desea buscar</string>
+    <string name="btn_search">BUSCAR</string>
+    <string name="btn_search_advanced">BÚSQUEDA AVANZADA</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 
