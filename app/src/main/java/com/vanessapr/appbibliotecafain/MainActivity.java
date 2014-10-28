@@ -7,8 +7,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.vanessapr.appbibliotecafain.fragments.BooksListFragment;
+
 public class MainActivity extends BaseActivity implements View.OnClickListener {
+
     private static final String TAG = "MainActivity";
+    public static final String TAG_WHERE = MainActivity.class.getName() + ".where";
+    public static final String TAG_ORDERBY = MainActivity.class.getName() + ".orderBy";
     private EditText txtBusqueda;
     private Button btnSeartch, btnSearchAdvanced;
 
@@ -39,8 +44,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                         where.append("OR titulo_revista LIKE '%").append(consulta).append("%'");
 
                         Intent intent = new Intent(MainActivity.this, BooksActivity.class);
-                        intent.putExtra(MainActivity.class.getName() + ".where", where.toString());
-                        intent.putExtra(MainActivity.class.getName() + ".orderBy", "titulo, titulo_revista, autor_personal, autor_institucional");
+                        intent.putExtra(TAG_WHERE, where.toString());
+                        intent.putExtra(TAG_ORDERBY, "titulo, titulo_revista, autor_personal, autor_institucional");
                         startActivity(intent);
                     }
                 break;
@@ -50,6 +55,5 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         }
 
     }
-
 
 }

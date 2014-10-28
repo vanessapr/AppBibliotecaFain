@@ -26,12 +26,12 @@ public class LibroModel {
         StringBuilder sql = new StringBuilder("SELECT * FROM ").append(TABLE_NAME);
 
         if (where != null) {
-            sql.append("WHERE ").append(where);
+            sql.append(" WHERE ").append(where);
             //sql += " WHERE " + where;
         }
 
         if (order != null){
-            sql.append("ORDER BY ").append(order);
+            sql.append(" ORDER BY ").append(order);
             //sql += " ORDER BY " + order;
         }
 
