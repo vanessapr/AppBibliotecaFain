@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp"
+    android:paddingTop="12dp"
+    android:paddingBottom="12dp"
+    android:orientation="vertical" >
+    
+    <TextView
+		android:id="@+id/tvBookTitulo"
+       	android:layout_width="match_parent"
+       	android:layout_height="wrap_content"
+       	android:ellipsize="end"
+       	android:maxLines="2"
+       	android:text="Sistemas de Monitoreo de Estabilidad de Taludes en Minería Superficial Toquepala"
+       	android:textStyle="bold" />
+       	
+	<TextView
+    	android:id="@+id/tvBookAutor"
+       	android:layout_width="match_parent"
+       	android:layout_height="wrap_content"
+       	android:ellipsize="end"
+       	android:singleLine="true"
+       	android:text="Davis,Gordon B.Olson,Margrethe H." />
+       	
+	<TextView 
+    	android:id="@+id/tvBookFecha"
+    	android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+       	android:text="1985"/>
+	
+	<TextView
+    	android:id="@+id/tvBookContenido"
+       	android:layout_width="match_parent"
+       	android:layout_height="wrap_content"
+       	android:ellipsize="end"
+       	android:maxLines="2"
+       	android:text="Unidades geológicas graficados y criterios de clasificación de Yacimientos Minerales,Principales Yacimientos de Minerales metálicos y no metálicos del Perú,Listas de yacimientos por metales y Departamentos" />
+    
+</LinearLayout>
