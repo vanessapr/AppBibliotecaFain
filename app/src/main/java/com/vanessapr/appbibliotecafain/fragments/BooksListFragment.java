@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.vanessapr.appbibliotecafain.MainActivity;
+import com.vanessapr.appbibliotecafain.BooksActivity;
 import com.vanessapr.appbibliotecafain.R;
 import com.vanessapr.appbibliotecafain.models.Libro;
 import com.vanessapr.appbibliotecafain.models.LibroAdapter;
@@ -33,9 +33,23 @@ public class BooksListFragment extends Fragment {
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+        Log.i(TAG, "onStart....");
+
+        Bundle args = getArguments();
+        if(args != null) {
+            String where = args.getString(BooksActivity.EXTRA_WHERE);
+            String orderBy = args.getString(BooksActivity.EXTRA_ORDERBY);
+            displayBooksList(where, orderBy);
+        }
+
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Log.d(TAG, "onCreateView...");
-        View view = inflater.inflate(R.layout.bookslist_fragment, container, false);
+        View view = inflater.inflate(R.layout.fragment_bookslist, container, false);
         lvBooks = (ListView) view.findViewById(R.id.listview_books);
         return view;
     }
@@ -54,20 +68,6 @@ public class BooksListFragment extends Fragment {
         }
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        Log.i(TAG, "onActivityCreated");
-
-        lvBooks.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                // Notify the parent activity of selected item
-                mCallback.onBookSelected(data.get(position));
-            }
-        });
-    }
-
     // Container Activity must implement this interface
     public interface onBooksListSelectListener {
         public void onBookSelected(Libro libro);
@@ -82,6 +82,13 @@ public class BooksListFragment extends Fragment {
             lvBooks.setAdapter(adapter);
         }
 
+        lvBooks.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                // Notify the parent activity of selected item
+                mCallback.onBookSelected(data.get(position));
+            }
+        });
     }
 
 
