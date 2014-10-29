@@ -14,13 +14,13 @@ public class BookSingleActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_single);
 
+        Libro libro = (Libro) getIntent().getSerializableExtra(EXTRA_BOOK);
+
         BookFragment bookfragment = (BookFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.fragment_single_book);
 
-        Libro libro = (Libro) getIntent().getSerializableExtra(EXTRA_BOOK);
-
+        bookfragment.setRetainInstance(true);
         bookfragment.displayBookSingle(libro);
-
     }
 
 }

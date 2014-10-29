@@ -18,33 +18,46 @@ import com.vanessapr.appbibliotecafain.models.Libro;
  */
 public class BookFragment extends Fragment {
     private static final String TAG = "BookFragment";
-    public static final String EXTRA_BOOK = BookFragment.class.getName() + "EXTRA_BOOK";
-    private Activity mActivity;
+    public static final String EXTRA_BOOK = BookFragment.class.getName() + ".EXTRA_BOOK";
+    public static final String EXTRA_POSITION_BOOK = BookFragment.class.getName() + ".EXTRA_POSITION_BOOK";
+    private Libro mCurrentPosition = null;
 
     public BookFragment() {
 
     }
 
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        Log.i(TAG, "onAttach...");
-        mActivity = activity;
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        Log.i(TAG, "onCreateView...");
+
+        if(savedInstanceState != null)
+            mCurrentPosition = (Libro) savedInstanceState.getSerializable(EXTRA_POSITION_BOOK);
+
         View view = inflater.inflate(R.layout.fragment_book, container, false);
         return view;
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        Log.i(TAG, "onStart...");
+        if(mCurrentPosition != null) {
+            displayBookSingle(mCurrentPosition);
+        }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Log.i(TAG, "onSaveInstanceState...");
+        // Save the current book selection in case we need to recreate the fragment
+        outState.putSerializable(EXTRA_POSITION_BOOK, mCurrentPosition);
+    }
+
     public void displayBookSingle(Libro libro) {
-        System.out.println("entrando....: ");
-        System.out.println("titulo: " + mActivity);
+        Log.i(TAG, "my activity: " + getActivity());
 
         TextView tvTitulo = (TextView) getActivity().findViewById(R.id.tv_book_titulo);
-
-
         TextView tvCodigo = (TextView) getActivity().findViewById(R.id.tv_book_codigo);
         TextView tvAutor = (TextView) getActivity().findViewById(R.id.tv_book_autor);
         TextView tvEditorial = (TextView) getActivity().findViewById(R.id.tv_book_editorial);
@@ -52,7 +65,6 @@ public class BookFragment extends Fragment {
         TextView tvAnio = (TextView) getActivity().findViewById(R.id.tv_book_anio);
         TextView tvContenido = (TextView) getActivity().findViewById(R.id.tv_book_contenido);
         TextView tvPaginas = (TextView) getActivity().findViewById(R.id.tv_book_paginas);
-
 
         tvTitulo.setText(libro.getTitulo());
         tvCodigo.setText(libro.getCodigo());
@@ -62,6 +74,10 @@ public class BookFragment extends Fragment {
         tvAnio.setText(libro.getAnio());
         tvContenido.setText(libro.getResumen());
         tvPaginas.setText(libro.getPaginas());
+
+        mCurrentPosition = libro;
+
     }
+
 
 }

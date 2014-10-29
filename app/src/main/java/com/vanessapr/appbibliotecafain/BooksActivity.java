@@ -42,6 +42,7 @@ public class BooksActivity extends ActionBarActivity implements
 
         if(bookFragment != null && bookFragment.getActivity() != null) {
             bookFragment.displayBookSingle(libro);
+            bookFragment.setRetainInstance(true);
 
         } else {
             Intent intent = new Intent(BooksActivity.this, BookSingleActivity.class);
