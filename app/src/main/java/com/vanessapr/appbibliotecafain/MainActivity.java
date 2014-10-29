@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.vanessapr.appbibliotecafain.fragments.BooksListFragment;
+import com.vanessapr.appbibliotecafain.utils.MessageDialog;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
 
@@ -51,7 +52,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                         intent.putExtra(BooksActivity.EXTRA_WHERE, where.toString());
                         intent.putExtra(BooksActivity.EXTRA_ORDERBY, "titulo, titulo_revista, autor_personal, autor_institucional");
                         startActivity(intent);
-                    }
+
+                    } else {
+                        MessageDialog message = new MessageDialog(MainActivity.this);
+                        message.display("Especifique un término para buscar");
+                    }t 
                 break;
 
             case R.id.btnSearchAdvanced:
