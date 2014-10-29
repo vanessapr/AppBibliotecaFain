@@ -6,6 +6,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.vanessapr.appbibliotecafain.utils.MessageDialog;
+
 public class FormSearchActivity extends BaseActivity implements View.OnClickListener {
     private EditText txtTitulo;
     private EditText txtAutor;
@@ -62,7 +64,9 @@ public class FormSearchActivity extends BaseActivity implements View.OnClickList
             startActivity(intent);
 
         } else {
-            // lunch message
+            // launch message
+            MessageDialog message = new MessageDialog(FormSearchActivity.this);
+            message.display("Especifique al menos un campo para buscar");
         }
     }
     private boolean validate() {
