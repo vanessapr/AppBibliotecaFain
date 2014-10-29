@@ -7,7 +7,7 @@ import com.vanessapr.appbibliotecafain.models.Libro;
 
 
 public class BookSingleActivity extends BaseActivity {
-    public static final String EXTRA_BOOK = BookSingleActivity.class.getSimpleName()+".EXTRA_BOOK";
+    public static final String EXTRA_BOOK = BookSingleActivity.class.getName()+".EXTRA_BOOK";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

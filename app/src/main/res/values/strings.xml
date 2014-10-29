@@ -10,8 +10,16 @@
     <string name="tv_book_titulo">Sistemas de Monitoreo de Estabilidad de Taludes en Minería Superficial Toquepala</string>
     <string name="textViewCodigo">Código</string>
     <string name="tv_book_codigo">R/549.7/P77</string>
-
     <string name="action_search">Buscar</string>
     <string name="action_settings">Settings</string>
+
+    <!-- String para formulario busqueda avanzada  -->
+    <string name="campo_titulo">Título</string>
+    <string name="campo_autor">Autor</string>
+    <string name="campo_editorial">Editorial</string>
+    <string name="campo_descriptores">Descriptores</string>
+    <string name="form_ordenar_por">Ordenar por</string>
+    <string name="form_text_hint">Introduce un término</string>
+
 
 </resources>

@@ -23,6 +23,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         txtBusqueda = (EditText) findViewById(R.id.txt_busqueda);
         btnSeartch = (Button) findViewById(R.id.btnSearch);
         btnSearchAdvanced = (Button) findViewById(R.id.btnSearchAdvanced);
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         btnSeartch.setOnClickListener(this);
         btnSearchAdvanced.setOnClickListener(this);
     }
@@ -49,6 +55,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 break;
 
             case R.id.btnSearchAdvanced:
+                Intent intent = new Intent(MainActivity.this, FormSearchActivity.class);
+                startActivity(intent);
                 break;
         }
 
