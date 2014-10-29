@@ -56,7 +56,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                     } else {
                         MessageDialog message = new MessageDialog(MainActivity.this);
                         message.display("Especifique un término para buscar");
-                    }t 
+                    }
                 break;
 
             case R.id.btnSearchAdvanced:
