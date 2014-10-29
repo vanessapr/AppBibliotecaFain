@@ -6,12 +6,11 @@
     android:id="@+id/container_books"
     tools:context="com.vanessapr.appbibliotecafain.BooksActivity">
 
-    <!--
+
     <fragment
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:name="com.vanessapr.appbibliotecafain.fragments.BooksListFragment"
-        android:id="@+id/frg_bookslist"
-        tools:layout="@layout/bookslist_fragment" /> -->
+        android:id="@+id/fragment_bookslist" />
 
 </LinearLayout>

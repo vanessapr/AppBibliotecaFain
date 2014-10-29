@@ -20,6 +20,10 @@
             android:name="com.vanessapr.appbibliotecafain.BooksActivity"
             android:label="@string/app_name" >
         </activity>
+        <activity
+            android:name="com.vanessapr.appbibliotecafain.BookSingleActivity"
+            android:label="@string/app_name" >
+        </activity>
     </application>
 
 </manifest>

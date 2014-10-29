@@ -11,8 +11,6 @@
     <string name="textViewCodigo">Código</string>
     <string name="tv_book_codigo">R/549.7/P77</string>
 
-    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_books">BooksActivity</string>
 
 </resources>

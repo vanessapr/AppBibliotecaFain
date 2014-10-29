@@ -24,20 +24,12 @@ import java.util.ArrayList;
  */
 public class BooksListFragment extends Fragment {
     private static final String TAG = "BooksListFragment";
-    private String where, orderBy;
+    private ArrayList<Libro> data;
     private ListView lvBooks;
     private onBooksListSelectListener mCallback;
 
     public BooksListFragment() {
 
-    }
-
-    public static BooksListFragment newInstance(Bundle args) {
-        Log.d(TAG, "newInstance");
-        BooksListFragment f = new BooksListFragment();
-        if(args != null)
-            f.setArguments(args);
-        return f;
     }
 
     @Override
@@ -67,33 +59,28 @@ public class BooksListFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         Log.i(TAG, "onActivityCreated");
 
-        where = getArguments().getString(MainActivity.TAG_WHERE);
-        orderBy = getArguments().getString(MainActivity.TAG_ORDERBY);
-        displayList();
-
+        lvBooks.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                // Notify the parent activity of selected item
+                mCallback.onBookSelected(data.get(position));
+            }
+        });
     }
 
     // Container Activity must implement this interface
     public interface onBooksListSelectListener {
-        public void onBookSelected(int position);
+        public void onBookSelected(Libro libro);
     }
 
-    private void displayList() {
+    public void displayBooksList(String where, String orderBy) {
         LibroModel model = new LibroModel(getActivity());
-        ArrayList<Libro> data = model.getLibros(where, orderBy);
+        data = model.getLibros(where, orderBy);
 
         if(data.size() > 0) {
             LibroAdapter adapter = new LibroAdapter(getActivity(), data);
             lvBooks.setAdapter(adapter);
         }
-
-        lvBooks.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                // Notify the parent activity of selected item
-                mCallback.onBookSelected(position);
-            }
-        });
 
     }
 

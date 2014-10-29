@@ -1,9 +1,11 @@
 package com.vanessapr.appbibliotecafain.models;
 
+import java.io.Serializable;
+
 /**
  * Created by Milagros on 27/10/2014.
  */
-public class Libro {
+public class Libro implements Serializable {
     private int id;
     private String codigo;
     private String autor;

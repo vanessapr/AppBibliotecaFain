@@ -8,10 +8,13 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
 
 import com.vanessapr.appbibliotecafain.fragments.BooksListFragment;
+import com.vanessapr.appbibliotecafain.models.Libro;
 
 
 public class BooksActivity extends ActionBarActivity implements
         BooksListFragment.onBooksListSelectListener {
+    public static final String EXTRA_WHERE = BooksActivity.class.getName() + ".where";
+    public static final String EXTRA_ORDERBY = BooksActivity.class.getName() + ".orderBy";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,22 +22,20 @@ public class BooksActivity extends ActionBarActivity implements
         setContentView(R.layout.activity_books);
 
         Intent intent = getIntent();
-        String where = intent.getStringExtra(MainActivity.TAG_WHERE);
-        String orderBy = intent.getStringExtra(MainActivity.TAG_ORDERBY);
+        String where = intent.getStringExtra(EXTRA_WHERE);
+        String orderBy = intent.getStringExtra(EXTRA_ORDERBY);
 
-        Bundle args = new Bundle();
-        args.putString(MainActivity.TAG_WHERE, where);
-        args.putString(MainActivity.TAG_ORDERBY, orderBy);
+        BooksListFragment booksListfragment = (BooksListFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.fragment_bookslist);
 
-        BooksListFragment fragmentBooks = BooksListFragment.newInstance(args);
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.container_books, fragmentBooks);
-        ft.commit();
+        booksListfragment.displayBooksList(where, orderBy);
     }
 
 
     @Override
-    public void onBookSelected(int position) {
-
+    public void onBookSelected(Libro libro) {
+        Intent intent = new Intent(BooksActivity.this, BookSingleActivity.class);
+        intent.putExtra(BookSingleActivity.EXTRA_BOOK, libro);
+        startActivity(intent);
     }
 }
