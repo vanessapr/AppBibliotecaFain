@@ -10,6 +10,7 @@
     
     <TextView
 		android:id="@+id/tvBookTitulo"
+        android:textColor="@color/black_900"
        	android:layout_width="match_parent"
        	android:layout_height="wrap_content"
        	android:ellipsize="end"

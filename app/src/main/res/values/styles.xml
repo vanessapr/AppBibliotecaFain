@@ -4,6 +4,7 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <!-- <item name="android:actionBarStyle">@style/customActionBar</item> -->
+
         <!-- Support library compatibility -->
         <item name="actionBarStyle">@style/customActionBar</item>
 
@@ -14,7 +15,14 @@
         <!-- <item name="android:background">@color/red</item> -->
         <!-- Support library compatibility -->
         <item name="background">@color/red</item>
+        <item name="subtitleTextStyle">@style/SubTitleTextStyle</item>
     </style>
+    <!-- action bar title text -->
+    <style name="SubTitleTextStyle"
+        parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Subtitle">
+        <item name="android:textColor">#f9bdbb</item>
+    </style>
+
     <!-- custom button -->
     <style name="button_custom" parent="@android:style/Widget.Button">
         <item name="android:background">@drawable/button_custom</item>
