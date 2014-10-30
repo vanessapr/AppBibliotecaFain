@@ -16,6 +16,7 @@ import com.vanessapr.appbibliotecafain.R;
 import com.vanessapr.appbibliotecafain.models.Libro;
 import com.vanessapr.appbibliotecafain.models.LibroAdapter;
 import com.vanessapr.appbibliotecafain.models.LibroModel;
+import com.vanessapr.appbibliotecafain.utils.MessageDialog;
 
 import java.util.ArrayList;
 
@@ -80,6 +81,10 @@ public class BooksListFragment extends Fragment {
         if(data.size() > 0) {
             LibroAdapter adapter = new LibroAdapter(getActivity(), data);
             lvBooks.setAdapter(adapter);
+
+        } else {
+            MessageDialog message = new MessageDialog(getActivity());
+            message.display("No hay resultados que mostrar");
         }
 
         lvBooks.setOnItemClickListener(new AdapterView.OnItemClickListener() {
