@@ -2,6 +2,7 @@ package com.vanessapr.appbibliotecafain;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -9,6 +10,7 @@ import android.widget.EditText;
 import com.vanessapr.appbibliotecafain.utils.MessageDialog;
 
 public class FormSearchActivity extends BaseActivity implements View.OnClickListener {
+
     private EditText txtTitulo;
     private EditText txtAutor;
     private EditText txtEditorial;
@@ -25,6 +27,8 @@ public class FormSearchActivity extends BaseActivity implements View.OnClickList
         txtEditorial = (EditText) findViewById(R.id.txtFormEditorial);
         txtDescriptores = (EditText) findViewById(R.id.txtDescriptores);
         btnSearch = (Button) findViewById(R.id.btnFormSearch);
+
+
     }
 
     @Override

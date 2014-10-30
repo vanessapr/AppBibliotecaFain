@@ -1,7 +1,9 @@
 package com.vanessapr.appbibliotecafain;
 
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -13,6 +15,15 @@ public abstract class BaseActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        final ActionBar actionBar = getSupportActionBar();
+        actionBar.setSubtitle("Facultad de Ingeniería");
+        actionBar.setDisplayHomeAsUpEnabled(setActionBarDisplayHomeAsUpEnabled());
+
+    }
+
+    protected boolean setActionBarDisplayHomeAsUpEnabled() {
+        return true;
     }
 
     @Override
@@ -29,8 +40,8 @@ public abstract class BaseActivity extends ActionBarActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if (id == android.R.id.home) {
+            onBackPressed();
         }
 
         return super.onOptionsItemSelected(item);

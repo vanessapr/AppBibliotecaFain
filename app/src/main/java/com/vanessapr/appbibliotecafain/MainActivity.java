@@ -3,11 +3,11 @@ package com.vanessapr.appbibliotecafain;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.vanessapr.appbibliotecafain.fragments.BooksListFragment;
 import com.vanessapr.appbibliotecafain.utils.MessageDialog;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
@@ -67,4 +67,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     }
 
+    @Override
+    protected boolean setActionBarDisplayHomeAsUpEnabled() {
+        return false;
+    }
 }
