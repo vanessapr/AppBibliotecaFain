@@ -26,11 +26,12 @@ public abstract class BaseActivity extends ActionBarActivity {
         return true;
     }
 
+    /*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.common, menu);
         return true;
-    }
+    } */
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

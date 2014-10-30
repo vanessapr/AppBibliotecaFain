@@ -1,6 +1,8 @@
 package com.vanessapr.appbibliotecafain.fragments;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -83,7 +85,7 @@ public class BooksListFragment extends Fragment {
             lvBooks.setAdapter(adapter);
 
         } else {
-            MessageDialog message = new MessageDialog(getActivity());
+            MessageDialog message = new MessageDialog(getActivity(), true);
             message.display("No hay resultados que mostrar");
         }
 
@@ -95,6 +97,5 @@ public class BooksListFragment extends Fragment {
             }
         });
     }
-
 
 }

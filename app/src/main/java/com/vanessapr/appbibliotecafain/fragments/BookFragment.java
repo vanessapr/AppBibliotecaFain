@@ -28,19 +28,18 @@ public class BookFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        Log.i(TAG, "onCreateView...");
+        Log.i(TAG, "onCreateView..." + savedInstanceState);
 
         if(savedInstanceState != null)
             mCurrentPosition = (Libro) savedInstanceState.getSerializable(EXTRA_POSITION_BOOK);
 
-        View view = inflater.inflate(R.layout.fragment_book, container, false);
-        return view;
+        return inflater.inflate(R.layout.fragment_book, container, false);
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        Log.i(TAG, "onStart...");
+        Log.i(TAG, "onStart..." + mCurrentPosition);
         if(mCurrentPosition != null) {
             displayBookSingle(mCurrentPosition);
         }
