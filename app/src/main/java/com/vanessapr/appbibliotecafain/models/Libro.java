@@ -79,6 +79,6 @@ public class Libro implements Serializable {
     public void setDescriptores(String mDescriptores) {
         descriptores = mDescriptores;
     }
-    public String getUrl_pdf() { return url_pdf; }
-    public void setUrl_pdf(String url) { url_pdf = url; }
+    public String getUrlPdf() { return url_pdf; }
+    public void setUrlPdf(String url) { url_pdf = url; }
 }

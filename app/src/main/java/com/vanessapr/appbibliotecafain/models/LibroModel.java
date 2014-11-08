@@ -44,31 +44,15 @@ public class LibroModel {
 
             book.setId(cursor.getInt(0));
             book.setCodigo(cursor.getString(1));
-
-            if ( cursor.getString(2) != null )
-                book.setAutor(cursor.getString(2));
-            else if( cursor.getString(3) != null)
-                book.setAutor(cursor.getString(3));
-
-            if( cursor.getString(4) != null)
-                book.setTitulo(cursor.getString(4));
-            else
-                book.setTitulo(cursor.getString(14));
-
-            book.setPaginas(cursor.getString(5));
-            book.setVolumen(cursor.getString(6));
-            book.setEditorial(cursor.getString(7));
-            book.setCiudad(cursor.getString(8));
-            book.setEdicion(cursor.getString(9));
-            book.setAnio(cursor.getString(10));
-            book.setResumen(cursor.getString(11));
-            book.setDescriptores(cursor.getString(12));
-            book.setEditorInstitucional(cursor.getString(13));
-            //book.setTituloRevista(cursor.getString(14));
-            book.setVolRevista(cursor.getString(15));
-            book.setFasciculo(cursor.getString(16));
-            book.setAsesor(cursor.getString(17));
-            book.setGrado(cursor.getString(18));
+            book.setAutor(cursor.getString(2));
+            book.setTitulo(cursor.getString(3));
+            book.setLugar(cursor.getString(4));
+            book.setFecha(cursor.getString(5));
+            book.setEditorial(cursor.getString(6));
+            book.setPaginas(cursor.getString(7));
+            book.setContenidos(cursor.getString(8));
+            book.setDescriptores(cursor.getString(9));
+            book.setUrlPdf(cursor.getString(10));
 
             libros.add(book);
             cursor.moveToNext();

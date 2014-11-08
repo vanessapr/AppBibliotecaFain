@@ -44,8 +44,8 @@ public class LibroAdapter extends ArrayAdapter<Libro> {
 
         placeHolder.titulo.setText(libros.get(position).getTitulo());
         placeHolder.autor.setText(libros.get(position).getAutor());
-        placeHolder.contenido.setText(libros.get(position).getResumen());
-        placeHolder.fecha.setText(libros.get(position).getAnio());
+        placeHolder.contenido.setText(libros.get(position).getContenidos());
+        placeHolder.fecha.setText(libros.get(position).getFecha());
 
         return (convertView);
     }

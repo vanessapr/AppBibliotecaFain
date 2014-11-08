@@ -75,16 +75,14 @@ public class BooksActivity extends BaseActivity implements
             public boolean onQueryTextSubmit(String arg0) {
                 String query = arg0;
                 StringBuilder where = new StringBuilder();
-                where.append("autor_personal LIKE '%").append(query).append("%' ");
-                where.append("OR autor_institucional LIKE '%").append(query).append("%' ");
+                where.append("autor_libro LIKE '%").append(query).append("%' ");
                 where.append("OR titulo LIKE '%").append(query).append("%' ");
-                where.append("OR resumen LIKE '%").append(query).append("%' ");
-                where.append("OR descriptores LIKE '%").append(query).append("%' ");
-                where.append("OR titulo_revista LIKE '%").append(query).append("%'");
+                where.append("OR contenidos LIKE '%").append(query).append("%' ");
+                where.append("OR descriptores LIKE '%").append(query).append("%'");
 
                 Intent intent = new Intent(BooksActivity.this, BooksActivity.class);
                 intent.putExtra(EXTRA_WHERE, where.toString());
-                intent.putExtra(EXTRA_ORDERBY, "titulo, titulo_revista, autor_personal, autor_institucional");
+                intent.putExtra(EXTRA_ORDERBY, "titulo, autor_libro");
                 startActivity(intent);
 
                 return false;

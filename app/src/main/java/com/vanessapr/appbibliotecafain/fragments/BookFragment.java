@@ -69,9 +69,9 @@ public class BookFragment extends Fragment {
         tvCodigo.setText(libro.getCodigo());
         tvAutor.setText(libro.getAutor());
         tvEditorial.setText(libro.getEditorial());
-        tvCiudad.setText(libro.getCiudad());
-        tvAnio.setText(libro.getAnio());
-        tvContenido.setText(libro.getResumen());
+        tvCiudad.setText(libro.getLugar());
+        tvAnio.setText(libro.getFecha());
+        tvContenido.setText(libro.getContenidos());
         tvPaginas.setText(libro.getPaginas());
 
         mCurrentPosition = libro;

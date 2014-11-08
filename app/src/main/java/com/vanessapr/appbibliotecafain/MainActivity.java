@@ -41,16 +41,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         switch (view.getId()) {
             case R.id.btnSearch:
                     if(!consulta.equals("")) {
-                        StringBuilder where = new StringBuilder("autor_personal LIKE '%").append(consulta).append("%' ");
-                        where.append("OR autor_institucional LIKE '%").append(consulta).append("%' ");
+                        StringBuilder where = new StringBuilder("autor_libro LIKE '%").append(consulta).append("%' ");
                         where.append("OR titulo LIKE '%").append(consulta).append("%' ");
-                        where.append("OR resumen LIKE '%").append(consulta).append("%' ");
-                        where.append("OR descriptores LIKE '%").append(consulta).append("%' ");
-                        where.append("OR titulo_revista LIKE '%").append(consulta).append("%'");
+                        where.append("OR contenidos LIKE '%").append(consulta).append("%' ");
+                        where.append("OR descriptores LIKE '%").append(consulta).append("%'");
 
                         Intent intent = new Intent(MainActivity.this, BooksActivity.class);
                         intent.putExtra(BooksActivity.EXTRA_WHERE, where.toString());
-                        intent.putExtra(BooksActivity.EXTRA_ORDERBY, "titulo, titulo_revista, autor_personal, autor_institucional");
+                        intent.putExtra(BooksActivity.EXTRA_ORDERBY, "titulo, autor_libro");
                         startActivity(intent);
 
                     } else {
