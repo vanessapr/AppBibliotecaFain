@@ -8,22 +8,15 @@ import java.io.Serializable;
 public class Libro implements Serializable {
     private int id;
     private String codigo;
-    private String autor;
+    private String autor_libro;
     private String titulo;
-    private String paginas;
-    private String volumen;
+    private String lugar;
+    private String fecha;
     private String editorial;
-    private String ciudad;
-    private String edicion;
-    private String anio;
-    private String resumen;
+    private String paginacion;
+    private String contenidos;
     private String descriptores;
-    private String editorInstitucional;
-    private String volRevista;
-    private String fasciculo;
-    private String asesor;
-    private String institucion;
-    private String grado;
+    private String url_pdf;
 
     /*
      * Methods Gets and Sets
@@ -41,10 +34,10 @@ public class Libro implements Serializable {
         codigo = mCodigo;
     }
     public String getAutor() {
-        return autor;
+        return autor_libro;
     }
-    public void setAutor(String autorPersonal) {
-        autor = autorPersonal;
+    public void setAutor(String autor) {
+        autor_libro = autor;
     }
     public String getTitulo() {
         return titulo;
@@ -53,16 +46,10 @@ public class Libro implements Serializable {
         titulo = mTitulo;
     }
     public String getPaginas() {
-        return paginas;
+        return paginacion;
     }
-    public void setPaginas(String mPaginas) {
-        paginas = mPaginas;
-    }
-    public String getVolumen() {
-        return volumen;
-    }
-    public void setVolumen(String mVolumen) {
-       volumen = mVolumen;
+    public void setPaginas(String paginas) {
+        paginacion = paginas;
     }
     public String getEditorial() {
         return editorial;
@@ -70,29 +57,21 @@ public class Libro implements Serializable {
     public void setEditorial(String mEditorial) {
         editorial = mEditorial;
     }
-    public String getCiudad() {
-        return ciudad;
+    public String getLugar() {
+        return lugar;
     }
-    public void setCiudad(String mCiudad) {
-        ciudad = mCiudad;
+    public void setLugar(String mLugar) { lugar = mLugar; }
+    public String getFecha() {
+        return fecha;
     }
-    public String getEdicion() {
-        return edicion;
+    public void setFecha(String mFecha) {
+        fecha = mFecha;
     }
-    public void setEdicion(String mEdicion) {
-        edicion = mEdicion;
+    public String getContenidos() {
+        return contenidos;
     }
-    public String getAnio() {
-        return anio;
-    }
-    public void setAnio(String mAnio) {
-        this.anio = mAnio;
-    }
-    public String getResumen() {
-        return resumen;
-    }
-    public void setResumen(String mResumen) {
-        resumen = mResumen;
+    public void setContenidos(String mContenidos) {
+        contenidos = mContenidos;
     }
     public String getDescriptores() {
         return descriptores;
@@ -100,41 +79,6 @@ public class Libro implements Serializable {
     public void setDescriptores(String mDescriptores) {
         descriptores = mDescriptores;
     }
-    public String getEditorInstitucional() {
-        return editorInstitucional;
-    }
-    public void setEditorInstitucional(String mEditorInstitucional) {
-        editorInstitucional = mEditorInstitucional;
-    }
-    public String getVolRevista() {
-        return volRevista;
-    }
-    public void setVolRevista(String mVolRevista) {
-        volRevista = mVolRevista;
-    }
-    public String getFasciculo() {
-        return fasciculo;
-    }
-    public void setFasciculo(String mFasciculo) {
-        fasciculo = mFasciculo;
-    }
-    public String getAsesor() {
-        return asesor;
-    }
-    public void setAsesor(String mAsesor) {
-        asesor = mAsesor;
-    }
-    public String getInstitucion() {
-        return institucion;
-    }
-    public void setInstitucion(String mInstitucion) {
-        institucion = mInstitucion;
-    }
-    public String getGrado() {
-        return grado;
-    }
-    public void setGrado(String mGrado) {
-        grado = mGrado;
-    }
-
+    public String getUrl_pdf() { return url_pdf; }
+    public void setUrl_pdf(String url) { url_pdf = url; }
 }
