@@ -9,79 +9,118 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.vanessapr.appbibliotecafain.FormSearchActivity">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/tvFormTitulo"
             android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginRight="10dp"
             android:textStyle="bold"
             android:text="@string/campo_titulo" />
 
         <EditText
             android:id="@+id/txtFormTitulo"
-            android:layout_marginBottom="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/form_text_hint">
-            <requestFocus />
-        </EditText>
+            android:hint="@string/form_text_hint"
+            android:layout_toRightOf="@+id/tvFormTitulo" />
 
         <TextView
             android:id="@+id/tvFormAutor"
             android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:layout_below="@+id/tvFormTitulo"
             android:textStyle="bold"
             android:text="@string/campo_autor" />
 
         <EditText
             android:id="@+id/txtFormAutor"
-            android:layout_marginBottom="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/form_text_hint" />
-
-        <TextView
-            android:id="@+id/tvFormEditorial"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:text="@string/campo_editorial" />
-
-        <EditText
-            android:id="@+id/txtFormEditorial"
-            android:layout_marginBottom="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/form_text_hint" />
+            android:hint="@string/form_text_hint"
+            android:layout_alignTop="@+id/tvFormAutor"
+            android:layout_alignLeft="@+id/txtFormTitulo"
+            android:layout_alignStart="@+id/txtFormTitulo" />
 
         <TextView
             android:id="@+id/tvFormDescriptores"
             android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/black"
+            android:paddingTop="5dp"
+            android:layout_marginBottom="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/tvFormAutor"
             android:textStyle="bold"
             android:text="@string/campo_descriptores" />
 
         <EditText
             android:id="@+id/txtDescriptores"
-            android:layout_marginBottom="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/form_text_hint" />
+            android:hint="@string/form_text_hint"
+            android:layout_alignTop="@+id/tvFormDescriptores"
+            android:layout_alignLeft="@+id/txtFormAutor"
+            android:layout_alignStart="@+id/txtFormAutor" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/field_check_books"
+            android:id="@+id/chFormBooks"
+            android:layout_marginTop="5dp"
+            android:layout_below="@+id/tvFormDescriptores" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/field_check_reviews"
+            android:id="@+id/chFormReview"
+            android:layout_gravity="center_horizontal"
+            android:layout_alignTop="@+id/chFormBooks"
+            android:layout_toRightOf="@+id/chFormBooks"
+            android:layout_toEndOf="@+id/chFormBooks" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CD"
+            android:id="@+id/chFormCD"
+            android:layout_alignTop="@+id/chFormBooks"
+            android:layout_toRightOf="@+id/chFormReview"
+            android:layout_toEndOf="@+id/chFormReview" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/field_check_homeworks"
+            android:id="@+id/chFormHomeworks"
+            android:layout_below="@+id/chFormBooks" />
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:prompt="@string/form_field_orderby"
+            android:id="@+id/orderby_spinner"
+            android:layout_below="@id/chFormHomeworks" />
 
         <Button
             android:id="@+id/btnFormSearch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/btn_search" />
+            android:text="@string/btn_search"
+            android:layout_below="@id/orderby_spinner"/>
 
-    </LinearLayout>
-
+    </RelativeLayout>
 </ScrollView>

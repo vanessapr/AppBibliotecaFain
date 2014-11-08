@@ -4,8 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import com.vanessapr.appbibliotecafain.utils.MessageDialog;
 
@@ -13,8 +15,8 @@ public class FormSearchActivity extends BaseActivity implements View.OnClickList
 
     private EditText txtTitulo;
     private EditText txtAutor;
-    private EditText txtEditorial;
     private EditText txtDescriptores;
+    private Spinner spOrder;
     private Button btnSearch;
 
     @Override
@@ -24,10 +26,17 @@ public class FormSearchActivity extends BaseActivity implements View.OnClickList
 
         txtTitulo = (EditText) findViewById(R.id.txtFormTitulo);
         txtAutor = (EditText) findViewById(R.id.txtFormAutor);
-        txtEditorial = (EditText) findViewById(R.id.txtFormEditorial);
+        spOrder = (Spinner) findViewById(R.id.orderby_spinner);
         txtDescriptores = (EditText) findViewById(R.id.txtDescriptores);
         btnSearch = (Button) findViewById(R.id.btnFormSearch);
 
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+                this,
+                R.array.field_orderby_array,
+                android.R.layout.simple_spinner_dropdown_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spOrder.setAdapter(adapter);
 
     }
 
@@ -51,11 +60,11 @@ public class FormSearchActivity extends BaseActivity implements View.OnClickList
                 conditions += (conditions.equals(""))? "" : " OR ";
                 conditions += "autor_personal LIKE '%" + txtAutor.getText().toString().trim() + "%'";
             }
-
+            /*
             if ( !txtEditorial.getText().toString().trim().equals("") ) {
                 conditions += (conditions.equals(""))? "" : " OR ";
                 conditions += "editorial LIKE '%" + txtEditorial.getText().toString().trim()  + "%'";
-            }
+            } */
 
             if ( !txtDescriptores.getText().toString().trim().equals("") ) {
                 conditions += (conditions.equals(""))? "" : " OR ";
@@ -76,7 +85,7 @@ public class FormSearchActivity extends BaseActivity implements View.OnClickList
     private boolean validate() {
         if ( txtTitulo.getText().toString().trim().equals("") &&
                 txtAutor.getText().toString().trim().equals("") &&
-                txtEditorial.getText().toString().trim().equals("") &&
+               // txtEditorial.getText().toString().trim().equals("") &&
                 txtDescriptores.getText().toString().trim().equals("") ) {
             return false;
 

@@ -17,9 +17,18 @@
     <string name="campo_titulo">Título</string>
     <string name="campo_autor">Autor</string>
     <string name="campo_editorial">Editorial</string>
-    <string name="campo_descriptores">Descriptores</string>
+    <string name="campo_descriptores">Tema</string>
     <string name="form_ordenar_por">Ordenar por</string>
     <string name="form_text_hint">Introduce un término</string>
-
+    <string name="field_check_books">Libros</string>
+    <string name="field_check_reviews">Revistas</string>
+    <string name="field_check_CD">CD</string>
+    <string name="field_check_homeworks">Trabajos, informes, tesis, etc.</string>
+    <string name="form_field_orderby">Ordernar por:</string>
+    <string-array name="field_orderby_array">
+        <item>Autor</item>
+        <item>Título</item>
+        <item>Año</item>
+    </string-array>
 
 </resources>
