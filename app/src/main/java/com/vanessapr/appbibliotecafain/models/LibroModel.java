@@ -27,12 +27,10 @@ public class LibroModel {
 
         if (where != null) {
             sql.append(" WHERE ").append(where);
-            //sql += " WHERE " + where;
         }
 
         if (order != null){
             sql.append(" ORDER BY ").append(order);
-            //sql += " ORDER BY " + order;
         }
 
         Log.d(TAG, "getLibros: " + sql.toString());

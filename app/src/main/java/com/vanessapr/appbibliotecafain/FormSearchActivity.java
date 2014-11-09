@@ -62,7 +62,7 @@ public class FormSearchActivity extends BaseActivity implements View.OnClickList
                 switch (pos) {
                     case 0: orderBy = "autor_libro"; break;
                     case 1: orderBy = "titulo"; break;
-                    case 2: orderBy = "fecha"; break;
+                    case 2: orderBy = "fecha DESC"; break;
                 }
                 //orderBy = (String) parent.getItemAtPosition(pos);
                 //Toast.makeText(getBaseContext(), orderBy, Toast.LENGTH_LONG).show();
@@ -111,7 +111,7 @@ public class FormSearchActivity extends BaseActivity implements View.OnClickList
 
             if(chCDs.isChecked()) {
                 condAux.append((condAux.toString().equals(""))? "( ": " OR ");
-                condAux.append("url_pdf != ''");
+                condAux.append("TRIM(url_pdf) != ''");
             }
 
             if(chOtros.isChecked()) {

@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/container_book"
-    android:padding="16dp"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-    <!--
 
     <TextView
         android:id="@+id/tv_book_titulo"
@@ -153,5 +149,4 @@
         android:layout_height="wrap_content"
         android:text="Unidades geológicas graficados y criterios de clasificación de Yacimientos Minerales,Principales Yacimientos de Minerales metálicos y no metálicos del Perú,Listas de yacimientos por metales y Departamentos" />
 
-    -->
 </LinearLayout>

@@ -1,11 +1,18 @@
 package com.vanessapr.appbibliotecafain.models;
 
-import java.io.Serializable;
+import android.content.Context;
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.view.LayoutInflater;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
+import com.vanessapr.appbibliotecafain.R;
 
 /**
  * Created by Milagros on 27/10/2014.
  */
-public class Libro implements Serializable {
+public class Libro implements Parcelable {
     private int id;
     private String codigo;
     private String autor_libro;
@@ -17,6 +24,28 @@ public class Libro implements Serializable {
     private String contenidos;
     private String descriptores;
     private String url_pdf;
+
+
+    /*
+    * Constructs
+    */
+    public Libro() {
+
+    }
+
+    private Libro(Parcel in) {
+        id = in.readInt();
+        codigo = in.readString();
+        autor_libro = in.readString();
+        titulo = in.readString();
+        lugar = in.readString();
+        fecha = in.readString();
+        editorial = in.readString();
+        paginacion = in.readString();
+        contenidos = in.readString();
+        descriptores = in.readString();
+        url_pdf = in.readString();
+    }
 
     /*
      * Methods Gets and Sets
@@ -81,4 +110,69 @@ public class Libro implements Serializable {
     }
     public String getUrlPdf() { return url_pdf; }
     public void setUrlPdf(String url) { url_pdf = url; }
+
+
+    /*
+     * Methods necessary for implements Parcelable
+     */
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel out, int flags) {
+        out.writeInt(id);
+        out.writeString(codigo);
+        out.writeString(autor_libro);
+        out.writeString(titulo);
+        out.writeString(lugar);
+        out.writeString(fecha);
+        out.writeString(editorial);
+        out.writeString(paginacion);
+        out.writeString(contenidos);
+        out.writeString(descriptores);
+        out.writeString(url_pdf);
+    }
+
+    public static final Parcelable.Creator<Libro> CREATOR = new Parcelable.Creator<Libro>(){
+
+        @Override
+        public Libro createFromParcel(Parcel in) {
+            return new Libro(in);
+        }
+
+        @Override
+        public Libro[] newArray(int size) {
+            return new Libro[size];
+        }
+    };
+
+    /*
+    * Views for types of books
+     */
+    public ViewGroup render(Context ctx) {
+        ViewGroup view = null;
+        LayoutInflater inflater = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        view = (ViewGroup) inflater.inflate(R.layout.template_book, null, false);
+        TextView tvTitulo = (TextView) view.findViewById(R.id.tv_book_titulo);
+        TextView tvCodigo = (TextView) view.findViewById(R.id.tv_book_codigo);
+        TextView tvAutor = (TextView) view.findViewById(R.id.tv_book_autor);
+        TextView tvEditorial = (TextView) view.findViewById(R.id.tv_book_editorial);
+        TextView tvCiudad = (TextView) view.findViewById(R.id.tv_book_ciudad);
+        TextView tvAnio = (TextView) view.findViewById(R.id.tv_book_anio);
+        TextView tvContenido = (TextView) view.findViewById(R.id.tv_book_contenido);
+        TextView tvPaginas = (TextView) view.findViewById(R.id.tv_book_paginas);
+
+        tvTitulo.setText(titulo);
+        tvCodigo.setText(codigo);
+        tvAutor.setText(autor_libro);
+        tvEditorial.setText(editorial);
+        tvCiudad.setText(lugar);
+        tvAnio.setText(fecha);
+        tvContenido.setText(contenidos);
+        tvPaginas.setText(paginacion);
+
+        return view;
+    }
 }

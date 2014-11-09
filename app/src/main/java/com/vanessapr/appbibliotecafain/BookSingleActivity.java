@@ -14,7 +14,7 @@ public class BookSingleActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_single);
 
-        Libro libro = (Libro) getIntent().getSerializableExtra(EXTRA_BOOK);
+        Libro libro = getIntent().getParcelableExtra(EXTRA_BOOK);
 
         BookFragment bookfragment = (BookFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.fragment_single_book);
