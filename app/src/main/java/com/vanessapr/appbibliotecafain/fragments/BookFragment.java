@@ -56,7 +56,7 @@ public class BookFragment extends Fragment {
     public void displayBookSingle(Libro libro) {
         Log.i(TAG, "my activity: " + getActivity());
         mContainer.removeAllViews();
-        mContainer.addView(libro.render(getActivity()));
+        mContainer.addView(libro.render(getActivity(),libro.getTipo()));
         mCurrentPosition = libro;
     }
 

@@ -14,6 +14,7 @@ import com.vanessapr.appbibliotecafain.R;
  */
 public class Libro implements Parcelable {
     private int id;
+    private int tipo; //1:books, 2:reviews, 3:CD, 4:others
     private String codigo;
     private String autor_libro;
     private String titulo;
@@ -25,7 +26,6 @@ public class Libro implements Parcelable {
     private String descriptores;
     private String url_pdf;
 
-
     /*
     * Constructs
     */
@@ -35,6 +35,7 @@ public class Libro implements Parcelable {
 
     private Libro(Parcel in) {
         id = in.readInt();
+        tipo = in.readInt();
         codigo = in.readString();
         autor_libro = in.readString();
         titulo = in.readString();
@@ -110,7 +111,12 @@ public class Libro implements Parcelable {
     }
     public String getUrlPdf() { return url_pdf; }
     public void setUrlPdf(String url) { url_pdf = url; }
-
+    public int getTipo(){
+        return tipo;
+    }
+    public void setTipo(int mTipo) {
+        tipo = mTipo;
+    }
 
     /*
      * Methods necessary for implements Parcelable
@@ -123,6 +129,7 @@ public class Libro implements Parcelable {
     @Override
     public void writeToParcel(Parcel out, int flags) {
         out.writeInt(id);
+        out.writeInt(tipo);
         out.writeString(codigo);
         out.writeString(autor_libro);
         out.writeString(titulo);
@@ -151,13 +158,25 @@ public class Libro implements Parcelable {
     /*
     * Views for types of books
      */
-    public ViewGroup render(Context ctx) {
-        ViewGroup view = null;
+    public ViewGroup render(Context ctx, int type) {
         LayoutInflater inflater = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        view = (ViewGroup) inflater.inflate(R.layout.template_book, null, false);
+        ViewGroup view;
+
+        switch (type) {
+            case 2: view = (ViewGroup) inflater.inflate(R.layout.template_review, null, false);
+                break;
+            case 3: view = (ViewGroup) inflater.inflate(R.layout.template_multimedia, null, false);
+                break;
+            default:
+                view = (ViewGroup) inflater.inflate(R.layout.template_book, null, false);
+                TextView tvCodigo = (TextView) view.findViewById(R.id.tv_book_codigo);
+                TextView tvAutor = (TextView) view.findViewById(R.id.tv_book_autor);
+                tvCodigo.setText(codigo);
+                tvAutor.setText(autor_libro);
+                break;
+        }
+
         TextView tvTitulo = (TextView) view.findViewById(R.id.tv_book_titulo);
-        TextView tvCodigo = (TextView) view.findViewById(R.id.tv_book_codigo);
-        TextView tvAutor = (TextView) view.findViewById(R.id.tv_book_autor);
         TextView tvEditorial = (TextView) view.findViewById(R.id.tv_book_editorial);
         TextView tvCiudad = (TextView) view.findViewById(R.id.tv_book_ciudad);
         TextView tvAnio = (TextView) view.findViewById(R.id.tv_book_anio);
@@ -165,8 +184,6 @@ public class Libro implements Parcelable {
         TextView tvPaginas = (TextView) view.findViewById(R.id.tv_book_paginas);
 
         tvTitulo.setText(titulo);
-        tvCodigo.setText(codigo);
-        tvAutor.setText(autor_libro);
         tvEditorial.setText(editorial);
         tvCiudad.setText(lugar);
         tvAnio.setText(fecha);
@@ -175,4 +192,5 @@ public class Libro implements Parcelable {
 
         return view;
     }
+
 }
