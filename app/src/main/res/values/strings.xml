@@ -7,9 +7,26 @@
     <string name="txt_busqueda">Escriba lo que desea buscar</string>
     <string name="btn_search">BUSCAR</string>
     <string name="btn_search_advanced">BÚSQUEDA AVANZADA</string>
+
+    <!-- String para templates -->
     <string name="tv_book_titulo">Sistemas de Monitoreo de Estabilidad de Taludes en Minería Superficial Toquepala</string>
+    <string name="tv_book_autor">Davis,Gordon B.Olson,Margrethe H.</string>
+    <string name="tv_book_lugar">Lima</string>
+    <string name="tv_book_fecha">1985</string>
+    <string name="tv_book_paginas">18pag.</string>
+    <string name="tv_book_contenido">Unidades geológicas graficados y criterios de clasificación de Yacimientos Minerales,Principales Yacimientos de Minerales metálicos y no metálicos del Perú,Listas de yacimientos por metales y Departamentos</string>
     <string name="textViewCodigo">Código</string>
     <string name="tv_book_codigo">R/549.7/P77</string>
+    <string name="tv_field_autor">Autor</string>
+    <string name="tv_field_editorial">Editorial</string>
+    <string name="tv_field_lugar">Lugar</string>
+    <string name="tv_field_fecha">Fecha</string>
+    <string name="tv_field_paginas">Páginas</string>
+    <string name="tv_field_contenido">Contenido</string>
+    <string name="tv_field_temas">Temas</string>
+    <string name="tv_field_btnDescargar">Descargar</string>
+    <!-- -->
+
     <string name="action_search">Buscar</string>
     <string name="action_settings">Settings</string>
 

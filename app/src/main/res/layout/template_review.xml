@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -15,97 +14,105 @@
         android:textStyle="bold"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/textViewEditorial"
+        android:textColor="@color/black_900"
+        android:layout_width="62dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_book_titulo"
+        android:text="@string/tv_field_editorial"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_book_editorial"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" >
-        <TextView
-            android:id="@+id/textViewEditorial"
-            android:textColor="@color/black_900"
-            android:layout_width="62dp"
-            android:layout_height="wrap_content"
-            android:text="Editorial"
-            android:textStyle="bold" />
+        android:layout_toRightOf="@+id/textViewEditorial"
+        android:layout_alignTop="@+id/textViewEditorial" />
 
-        <TextView
-            android:id="@+id/tv_book_editorial"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="s.e." />
-    </LinearLayout>
+    <TextView
+        android:id="@+id/textViewCiudad"
+        android:textColor="@color/black_900"
+        android:layout_width="62dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textViewEditorial"
+        android:text="@string/tv_field_lugar"
+        android:textStyle="bold" />
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/tv_book_ciudad"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_toRightOf="@+id/textViewCiudad"
+        android:layout_alignTop="@+id/textViewCiudad"
+        android:text="@string/tv_book_lugar" />
 
-        <TextView
-            android:id="@+id/textViewCiudad"
-            android:textColor="@color/black_900"
-            android:layout_width="62dp"
-            android:layout_height="wrap_content"
-            android:text="Lugar "
-            android:textStyle="bold" />
+    <TextView
+        android:id="@+id/textViewAnio"
+        android:textColor="@color/black_900"
+        android:layout_width="62dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textViewCiudad"
+        android:text="@string/tv_field_fecha"
+        android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/tv_book_ciudad"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Lima" />
-    </LinearLayout>
-
-    <LinearLayout
+    <TextView
+        android:id="@+id/tv_book_anio"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_toRightOf="@+id/textViewAnio"
+        android:layout_alignTop="@+id/textViewAnio"
+        android:text="@string/tv_book_fecha" />
 
-        <TextView
-            android:id="@+id/textViewAnio"
-            android:textColor="@color/black_900"
-            android:layout_width="62dp"
-            android:layout_height="wrap_content"
-            android:text="Fecha "
-            android:textStyle="bold" />
+    <TextView
+        android:id="@+id/textViewPaginas"
+        android:textColor="@color/black_900"
+        android:layout_width="62dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textViewAnio"
+        android:text="@string/tv_field_paginas"
+        android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/tv_book_anio"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="1985" />
-    </LinearLayout>
-
-    <LinearLayout
+    <TextView
+        android:id="@+id/tv_book_paginas"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_toRightOf="@+id/textViewPaginas"
+        android:layout_alignTop="@+id/textViewPaginas"
+        android:text="@string/tv_book_paginas" />
 
-        <TextView
-            android:id="@+id/textViewPaginas"
-            android:textColor="@color/black_900"
-            android:layout_width="62dp"
-            android:layout_height="wrap_content"
-            android:text="Páginas "
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/tv_book_paginas"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="18pag." />
-    </LinearLayout>
 
     <TextView
         android:id="@+id/textViewContenido"
         android:textColor="@color/black_900"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/textViewPaginas"
         android:textStyle="bold"
-        android:text="Contenido " />
+        android:text="@string/tv_field_contenido" />
 
     <TextView
         android:id="@+id/tv_book_contenido"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Unidades geológicas graficados y criterios de clasificación de Yacimientos Minerales,Principales Yacimientos de Minerales metálicos y no metálicos del Perú,Listas de yacimientos por metales y Departamentos" />
+        android:layout_marginBottom="3dp"
+        android:layout_below="@+id/textViewContenido"
+        android:text="@string/tv_book_contenido" />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/textViewTemas"
+        android:textColor="@color/black_900"
+        android:layout_width="62dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_book_contenido"
+        android:text="@string/tv_field_temas"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_book_temas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/textViewTemas"
+        android:layout_alignTop="@+id/textViewTemas" />
+
+</RelativeLayout>

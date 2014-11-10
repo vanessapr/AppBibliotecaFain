@@ -9,12 +9,15 @@ import android.widget.TextView;
 
 import com.vanessapr.appbibliotecafain.R;
 
+import java.text.DecimalFormat;
+
 /**
  * Created by Milagros on 27/10/2014.
  */
 public class Libro implements Parcelable {
     private int id;
     private int tipo; //1:books, 2:reviews, 3:CD, 4:others
+    private int size;
     private String codigo;
     private String autor_libro;
     private String titulo;
@@ -36,6 +39,7 @@ public class Libro implements Parcelable {
     private Libro(Parcel in) {
         id = in.readInt();
         tipo = in.readInt();
+        size = in.readInt();
         codigo = in.readString();
         autor_libro = in.readString();
         titulo = in.readString();
@@ -117,6 +121,12 @@ public class Libro implements Parcelable {
     public void setTipo(int mTipo) {
         tipo = mTipo;
     }
+    public int getSize() {
+        return size;
+    }
+    public void setSize(int mSize) {
+        size = mSize;
+    }
 
     /*
      * Methods necessary for implements Parcelable
@@ -130,6 +140,7 @@ public class Libro implements Parcelable {
     public void writeToParcel(Parcel out, int flags) {
         out.writeInt(id);
         out.writeInt(tipo);
+        out.writeInt(size);
         out.writeString(codigo);
         out.writeString(autor_libro);
         out.writeString(titulo);
@@ -162,19 +173,44 @@ public class Libro implements Parcelable {
         LayoutInflater inflater = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         ViewGroup view;
 
-        switch (type) {
-            case 2: view = (ViewGroup) inflater.inflate(R.layout.template_review, null, false);
-                break;
-            case 3: view = (ViewGroup) inflater.inflate(R.layout.template_multimedia, null, false);
-                break;
-            default:
-                view = (ViewGroup) inflater.inflate(R.layout.template_book, null, false);
-                TextView tvCodigo = (TextView) view.findViewById(R.id.tv_book_codigo);
-                TextView tvAutor = (TextView) view.findViewById(R.id.tv_book_autor);
-                tvCodigo.setText(codigo);
-                tvAutor.setText(autor_libro);
-                break;
+        if(type == 2) {
+            view = (ViewGroup) inflater.inflate(R.layout.template_review, null, false);
+        } else if(type == 3) {
+            view = (ViewGroup) inflater.inflate(R.layout.template_multimedia, null, false);
+        } else {
+            view = (ViewGroup) inflater.inflate(R.layout.template_book, null, false);
         }
+
+        if(view.findViewById(R.id.tv_book_codigo) != null) {
+            TextView tvCodigo = (TextView) view.findViewById(R.id.tv_book_codigo);
+            tvCodigo.setText(codigo);
+        }
+
+        if(view.findViewById(R.id.tv_book_autor) != null) {
+            TextView tvAutor = (TextView) view.findViewById(R.id.tv_book_autor);
+            tvAutor.setText(autor_libro);
+        }
+
+        if(view.findViewById(R.id.tv_book_temas) != null) {
+            TextView tvTemas = (TextView) view.findViewById(R.id.tv_book_temas);
+            tvTemas.setText(descriptores);
+        }
+
+        if(view.findViewById(R.id.tv_book_size) != null) {
+            TextView tvSize = (TextView) view.findViewById(R.id.tv_book_size);
+            // calculate size in MB
+            StringBuilder cSize = new StringBuilder("Pesa ");
+            if(size > 1024){
+                float newsize = (float) size/1024;
+                DecimalFormat df = new DecimalFormat("0.00");
+                cSize.append(df.format(newsize)).append(" MB");
+            } else {
+                cSize.append(String.valueOf(size)).append(" KB");
+            }
+
+            tvSize.setText(cSize.toString());
+        }
+
 
         TextView tvTitulo = (TextView) view.findViewById(R.id.tv_book_titulo);
         TextView tvEditorial = (TextView) view.findViewById(R.id.tv_book_editorial);

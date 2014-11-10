@@ -38,7 +38,7 @@
         android:layout_width="62dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textViewCodigo"
-        android:text="Autor"
+        android:text="@string/tv_field_autor"
         android:textStyle="bold" />
 
     <TextView
@@ -47,7 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/textViewAutor"
         android:layout_alignTop="@+id/textViewAutor"
-        android:text="Davis,Gordon B.Olson,Margrethe H." />
+        android:text="@string/tv_book_autor" />
 
     <TextView
         android:id="@+id/textViewEditorial"
@@ -55,7 +55,7 @@
         android:layout_width="62dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textViewAutor"
-        android:text="Editorial"
+        android:text="@string/tv_field_editorial"
         android:textStyle="bold" />
 
     <TextView
@@ -63,8 +63,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/textViewEditorial"
-        android:layout_alignTop="@+id/textViewEditorial"
-        android:text="s.e." />
+        android:layout_alignTop="@+id/textViewEditorial" />
 
     <TextView
         android:id="@+id/textViewCiudad"
@@ -72,7 +71,7 @@
         android:layout_width="62dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textViewEditorial"
-        android:text="Lugar "
+        android:text="@string/tv_field_lugar"
         android:textStyle="bold" />
 
     <TextView
@@ -81,7 +80,7 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/textViewCiudad"
         android:layout_alignTop="@+id/textViewCiudad"
-        android:text="Lima" />
+        android:text="@string/tv_book_lugar" />
 
     <TextView
         android:id="@+id/textViewAnio"
@@ -89,7 +88,7 @@
         android:layout_width="62dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textViewCiudad"
-        android:text="Fecha "
+        android:text="@string/tv_field_fecha"
         android:textStyle="bold" />
 
     <TextView
@@ -98,7 +97,7 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/textViewAnio"
         android:layout_alignTop="@+id/textViewAnio"
-        android:text="1985" />
+        android:text="@string/tv_book_fecha" />
 
     <TextView
         android:id="@+id/textViewPaginas"
@@ -106,7 +105,7 @@
         android:layout_width="62dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textViewAnio"
-        android:text="Páginas "
+        android:text="@string/tv_field_paginas"
         android:textStyle="bold" />
 
     <TextView
@@ -115,15 +114,33 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/textViewPaginas"
         android:layout_alignTop="@+id/textViewPaginas"
-        android:text="18pag." />
+        android:text="@string/tv_book_paginas" />
+
+
+    <TextView
+        android:id="@+id/textViewContenido"
+        android:textColor="@color/black_900"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textViewPaginas"
+        android:textStyle="bold"
+        android:text="@string/tv_field_contenido" />
+
+    <TextView
+        android:id="@+id/tv_book_contenido"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="3dp"
+        android:layout_below="@+id/textViewContenido"
+        android:text="@string/tv_book_contenido" />
 
     <TextView
         android:id="@+id/textViewTemas"
         android:textColor="@color/black_900"
         android:layout_width="62dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textViewPaginas"
-        android:text="Temas"
+        android:layout_below="@+id/tv_book_contenido"
+        android:text="@string/tv_field_temas"
         android:textStyle="bold" />
 
     <TextView
@@ -133,35 +150,18 @@
         android:layout_toRightOf="@+id/textViewTemas"
         android:layout_alignTop="@+id/textViewTemas" />
 
-    <TextView
-        android:id="@+id/textViewContenido"
-        android:textColor="@color/black_900"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textViewTemas"
-        android:textStyle="bold"
-        android:text="Contenido " />
-
-    <TextView
-        android:id="@+id/tv_book_contenido"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textViewContenido"
-        android:layout_marginBottom="30dp"
-        android:text="Unidades geológicas graficados y criterios de clasificación de Yacimientos Minerales,Principales Yacimientos de Minerales metálicos y no metálicos del Perú,Listas de yacimientos por metales y Departamentos" />
-
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_book_contenido"
+        android:layout_below="@+id/tv_book_temas"
         android:layout_alignParentRight="true"
-        android:text="Descargar"
+        android:layout_marginTop="30dp"
+        android:text="@string/tv_field_btnDescargar"
         android:id="@+id/btnDownloadCD" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Pesa 350kb"
         android:id="@+id/tv_book_size"
         android:layout_marginRight="10dp"
         android:layout_alignBaseline="@+id/btnDownloadCD"

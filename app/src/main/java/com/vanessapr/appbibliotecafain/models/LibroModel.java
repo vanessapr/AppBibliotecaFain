@@ -52,6 +52,7 @@ public class LibroModel {
             book.setDescriptores(cursor.getString(9));
             book.setUrlPdf(cursor.getString(10));
             book.setTipo(cursor.getInt(11));
+            book.setSize(cursor.getInt(12));
             libros.add(book);
             cursor.moveToNext();
         }
