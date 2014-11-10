@@ -14,18 +14,14 @@ import android.widget.Toast;
 
 import com.vanessapr.appbibliotecafain.utils.MessageDialog;
 
-public class FormSearchActivity extends BaseActivity implements View.OnClickListener {
+public class FormSearchActivity extends BaseActivity implements View.OnClickListener,
+        AdapterView.OnItemSelectedListener {
 
-    private EditText txtTitulo;
-    private EditText txtAutor;
-    private EditText txtDescriptores;
-    private CheckBox chLibros;
-    private CheckBox chRevistas;
-    private CheckBox chCDs;
-    private CheckBox chOtros;
-    private Spinner spinnerOrder;
+    private EditText txtTitulo, txtAutor, txtDescriptores;
+    private Spinner spinnerType, spinnerOrder;
+    private CheckBox chAll;
     private Button btnSearch;
-    private String orderBy;
+    private String orderBy, type;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,12 +30,10 @@ public class FormSearchActivity extends BaseActivity implements View.OnClickList
 
         txtTitulo = (EditText) findViewById(R.id.txtFormTitulo);
         txtAutor = (EditText) findViewById(R.id.txtFormAutor);
-        spinnerOrder = (Spinner) findViewById(R.id.orderby_spinner);
+        spinnerOrder = (Spinner) findViewById(R.id.sp_orderby);
+        spinnerType = (Spinner) findViewById(R.id.sp_type_books);
         txtDescriptores = (EditText) findViewById(R.id.txtDescriptores);
-        chLibros = (CheckBox) findViewById(R.id.chFormBooks);
-        chRevistas = (CheckBox) findViewById(R.id.chFormReview);
-        chCDs = (CheckBox) findViewById(R.id.chFormCD);
-        chOtros = (CheckBox) findViewById(R.id.chFormHomeworks);
+        chAll = (CheckBox) findViewById(R.id.chAll);
         btnSearch = (Button) findViewById(R.id.btnFormSearch);
 
         // Create an ArrayAdapter using the string array and a default spinner layout
@@ -50,34 +44,25 @@ public class FormSearchActivity extends BaseActivity implements View.OnClickList
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerOrder.setAdapter(adapter);
 
+        ArrayAdapter<CharSequence> adapterType = ArrayAdapter.createFromResource(
+                this,
+                R.array.field_typeBooks_array,
+                android.R.layout.simple_spinner_dropdown_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerType.setAdapter(adapterType);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         btnSearch.setOnClickListener(this);
-        spinnerOrder.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-                switch (pos) {
-                    case 0: orderBy = "autor_libro"; break;
-                    case 1: orderBy = "titulo"; break;
-                    case 2: orderBy = "fecha DESC"; break;
-                }
-                //orderBy = (String) parent.getItemAtPosition(pos);
-                //Toast.makeText(getBaseContext(), orderBy, Toast.LENGTH_LONG).show();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
+        spinnerOrder.setOnItemSelectedListener(this);
+        spinnerType.setOnItemSelectedListener(this);
     }
 
     @Override
     public void onClick(View view) {
-        if(validate()) {
+        if(chAll.isChecked() || validate()) {
             StringBuilder conditions = new StringBuilder();
 
             if ( !txtTitulo.getText().toString().trim().equals("") ) {
@@ -97,33 +82,10 @@ public class FormSearchActivity extends BaseActivity implements View.OnClickList
                         .append(txtDescriptores.getText().toString().trim()).append("'%");
             }
 
-            conditions.append( (conditions.toString().equals(""))? "": " )");
-            StringBuilder condAux = new StringBuilder();
-
-            if(chLibros.isChecked()) {
-                condAux.append("( codigo NOT LIKE 'T%' AND codigo NOT LIKE 'IB%' AND codigo != '' ");
-            }
-
-            if(chRevistas.isChecked()) {
-                condAux.append((condAux.toString().equals(""))? "( ": " OR ");
-                condAux.append("descriptores LIKE 'REVISTA'");
-            }
-
-            if(chCDs.isChecked()) {
-                condAux.append((condAux.toString().equals(""))? "( ": " OR ");
-                condAux.append("TRIM(url_pdf) != ''");
-            }
-
-            if(chOtros.isChecked()) {
-                condAux.append((condAux.toString().equals(""))? "( ": " OR ");
-                condAux.append("codigo LIKE 'T%' OR codigo LIKE 'IB%'");
-            }
-
-            condAux.append((condAux.toString().equals(""))? "": " )");
-
-            if(!condAux.toString().equals("")) {
-                conditions.append((conditions.toString().equals(""))? "": " AND " );
-                conditions.append(condAux.toString());
+            if(!conditions.toString().equals("")) {
+                conditions.append(" ) AND ( ").append(type).append(" )");
+            } else {
+                conditions.append("(").append(type).append(")");
             }
 
             Intent  intent= new Intent(FormSearchActivity.this, BooksActivity.class);
@@ -140,9 +102,7 @@ public class FormSearchActivity extends BaseActivity implements View.OnClickList
     private boolean validate() {
         if ( txtTitulo.getText().toString().trim().equals("") &&
                 txtAutor.getText().toString().trim().equals("") &&
-                txtDescriptores.getText().toString().trim().equals("") &&
-                !chLibros.isChecked() && !chRevistas.isChecked() &&
-                !chCDs.isChecked() && !chOtros.isChecked() ) {
+                txtDescriptores.getText().toString().trim().equals("") ) {
             return false;
 
         } else {
@@ -150,4 +110,29 @@ public class FormSearchActivity extends BaseActivity implements View.OnClickList
         }
     }
 
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+
+        if( parent.getId() == R.id.sp_orderby) {
+            switch (pos) {
+                case 0: orderBy = "autor_libro"; break;
+                case 1: orderBy = "titulo"; break;
+                case 2: orderBy = "fecha DESC"; break;
+            }
+            //orderBy = (String) parent.getItemAtPosition(pos);
+            //Toast.makeText(getBaseContext(), orderBy, Toast.LENGTH_LONG).show();
+        } else if(parent.getId() == R.id.sp_type_books) {
+            switch (pos) {
+                case 0: type ="tipo=1"; break;
+                case 1: type ="tipo=2"; break;
+                case 2: type ="tipo=3"; break;
+                case 3: type= "tipo=4"; break;
+            }
+        }
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
+    }
 }

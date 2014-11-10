@@ -25,11 +25,11 @@ public class LibroModel {
         ArrayList<Libro> libros = new ArrayList<Libro>();
         StringBuilder sql = new StringBuilder("SELECT * FROM ").append(TABLE_NAME);
 
-        if (where != null) {
+        if (where != null && !where.equals("")) {
             sql.append(" WHERE ").append(where);
         }
 
-        if (order != null){
+        if (order != null && !order.equals("")){
             sql.append(" ORDER BY ").append(order);
         }
 

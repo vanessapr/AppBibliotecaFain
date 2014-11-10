@@ -20,11 +20,17 @@
     <string name="campo_descriptores">Tema</string>
     <string name="form_ordenar_por">Ordenar por</string>
     <string name="form_text_hint">Introduce un término</string>
-    <string name="field_check_books">Libros</string>
-    <string name="field_check_reviews">Revistas</string>
-    <string name="field_check_CD">CD</string>
-    <string name="field_check_homeworks">Trabajos, informes, tesis, etc.</string>
+    <string name="form_field_typeBooks">Buscar en:</string>
     <string name="form_field_orderby">Ordernar por:</string>
+    <string name="form_field_all">Mostrar todos</string>
+
+    <string-array name="field_typeBooks_array">
+        <item>Libros</item>
+        <item>Revistas</item>
+        <item>CD</item>
+        <item>Trabajos, informes, tesis, etc.</item>
+    </string-array>
+
     <string-array name="field_orderby_array">
         <item>Autor</item>
         <item>Título</item>

@@ -74,53 +74,33 @@
             android:layout_alignLeft="@+id/txtFormAutor"
             android:layout_alignStart="@+id/txtFormAutor" />
 
-        <CheckBox
-            android:layout_width="wrap_content"
+        <Spinner
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/field_check_books"
-            android:id="@+id/chFormBooks"
-            android:layout_marginTop="5dp"
-            android:layout_below="@+id/tvFormDescriptores" />
-
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/field_check_reviews"
-            android:id="@+id/chFormReview"
-            android:layout_gravity="center_horizontal"
-            android:layout_alignTop="@+id/chFormBooks"
-            android:layout_toRightOf="@+id/chFormBooks"
-            android:layout_toEndOf="@+id/chFormBooks" />
-
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="CD"
-            android:id="@+id/chFormCD"
-            android:layout_alignTop="@+id/chFormBooks"
-            android:layout_toRightOf="@+id/chFormReview"
-            android:layout_toEndOf="@+id/chFormReview" />
-
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/field_check_homeworks"
-            android:id="@+id/chFormHomeworks"
-            android:layout_below="@+id/chFormBooks" />
+            android:prompt="@string/form_field_typeBooks"
+            android:id="@+id/sp_type_books"
+            android:layout_below="@+id/txtDescriptores" />
 
         <Spinner
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:prompt="@string/form_field_orderby"
-            android:id="@+id/orderby_spinner"
-            android:layout_below="@id/chFormHomeworks" />
+            android:id="@+id/sp_orderby"
+            android:layout_below="@+id/sp_type_books" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/form_field_all"
+            android:id="@+id/chAll"
+            android:layout_below="@+id/sp_orderby" />
 
         <Button
             android:id="@+id/btnFormSearch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/btn_search"
-            android:layout_below="@id/orderby_spinner"/>
+            android:layout_below="@id/chAll"/>
 
     </RelativeLayout>
 </ScrollView>
