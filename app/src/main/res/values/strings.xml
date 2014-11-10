@@ -44,7 +44,7 @@
     <string-array name="field_typeBooks_array">
         <item>Libros</item>
         <item>Revistas</item>
-        <item>CD</item>
+        <item>Multimedia</item>
         <item>Trabajos, informes, tesis, etc.</item>
     </string-array>
 
