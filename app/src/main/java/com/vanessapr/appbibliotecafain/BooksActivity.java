@@ -45,7 +45,7 @@ public class BooksActivity extends BaseActivity implements
 
         if(bookFragment != null && bookFragment.getActivity() != null) {
             bookFragment.displayBookSingle(libro);
-            bookFragment.setRetainInstance(true);
+            //bookFragment.setRetainInstance(true);
 
         } else {
             Intent intent = new Intent(BooksActivity.this, BookSingleActivity.class);

@@ -72,8 +72,22 @@ public class BookFragment extends Fragment {
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Log.i(TAG, "onSaveInstanceState...");
+        // Save the current book selection in case we need to recreate the fragment
+        outState.putParcelable(EXTRA_POSITION_BOOK, mCurrentPosition);
+    }
+
+    public void displayBookSingle(Libro libro) {
+        Log.i(TAG, "my activity: " + getActivity());
+        mCurrentPosition = libro;
+        mContainer.removeAllViews();
+        mContainer.addView(libro.render(getActivity(),libro.getTipo()));
+        DownloadFile();
+    }
+
+    private void DownloadFile() {
         // if exists button, download file
         if(getActivity().findViewById(R.id.btnDownloadCD) != null) {
             Button btnDownload = (Button) getActivity().findViewById(R.id.btnDownloadCD);
@@ -99,7 +113,8 @@ public class BookFragment extends Fragment {
                                 @Override
                                 public void onCancel(DialogInterface dialogInterface) {
                                     task.cancel(true);
-                                    file.delete();
+                                    if(file.exists())
+                                        file.delete();
                                     Toast.makeText(getActivity(), "Descarga cancelada", Toast.LENGTH_LONG).show();
                                 }
                             });
@@ -114,22 +129,9 @@ public class BookFragment extends Fragment {
 
                 }
             });
+        } else {
+            Log.e(TAG, "no existe");
         }
-    }
-
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        Log.i(TAG, "onSaveInstanceState...");
-        // Save the current book selection in case we need to recreate the fragment
-        outState.putParcelable(EXTRA_POSITION_BOOK, mCurrentPosition);
-    }
-
-    public void displayBookSingle(Libro libro) {
-        Log.i(TAG, "my activity: " + getActivity());
-        mContainer.removeAllViews();
-        mContainer.addView(libro.render(getActivity(),libro.getTipo()));
-        mCurrentPosition = libro;
     }
 
     /*

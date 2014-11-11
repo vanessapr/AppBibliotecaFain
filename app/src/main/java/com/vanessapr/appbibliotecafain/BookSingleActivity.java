@@ -19,7 +19,7 @@ public class BookSingleActivity extends BaseActivity {
         BookFragment bookfragment = (BookFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.fragment_single_book);
 
-        bookfragment.setRetainInstance(true);
+        //bookfragment.setRetainInstance(true);
         bookfragment.displayBookSingle(libro);
     }
 
