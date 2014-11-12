@@ -1,8 +1,10 @@
 package com.vanessapr.appbibliotecafain.models;
 
 import android.content.Context;
+import android.graphics.Paint;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -188,12 +190,14 @@ public class Libro implements Parcelable {
 
         if(view.findViewById(R.id.tv_book_autor) != null) {
             TextView tvAutor = (TextView) view.findViewById(R.id.tv_book_autor);
-            tvAutor.setText(autor_libro);
+            if(autor_libro != null)
+                tvAutor.setText(Html.fromHtml("<u>"+autor_libro+"</u>"));
         }
 
         if(view.findViewById(R.id.tv_book_temas) != null) {
             TextView tvTemas = (TextView) view.findViewById(R.id.tv_book_temas);
-            tvTemas.setText(descriptores);
+            if(descriptores != null)
+                tvTemas.setText(Html.fromHtml("<u>"+descriptores+"</u>"));
         }
 
         if(view.findViewById(R.id.tv_book_size) != null) {
@@ -220,7 +224,10 @@ public class Libro implements Parcelable {
         TextView tvPaginas = (TextView) view.findViewById(R.id.tv_book_paginas);
 
         tvTitulo.setText(titulo);
-        tvEditorial.setText(editorial);
+
+        if(editorial != null)
+            tvEditorial.setText(Html.fromHtml("<u>"+editorial+"</u>"));
+
         tvCiudad.setText(lugar);
         tvAnio.setText(fecha);
         tvContenido.setText(contenidos);

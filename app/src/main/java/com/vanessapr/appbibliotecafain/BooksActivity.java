@@ -44,7 +44,8 @@ public class BooksActivity extends BaseActivity implements
         Log.i(TAG, "onBookSelected: " + bookFragment);
 
         if(bookFragment != null && bookFragment.getActivity() != null) {
-            bookFragment.displayBookSingle(libro);
+            Intent intent = new Intent(BooksActivity.this, BooksActivity.class);
+            bookFragment.displayBookSingle(libro, intent);
             //bookFragment.setRetainInstance(true);
 
         } else {

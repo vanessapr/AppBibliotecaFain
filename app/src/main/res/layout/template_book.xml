@@ -29,7 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/textViewCodigo"
         android:layout_alignTop="@+id/textViewCodigo"
-        android:textSize="16dp"
+        android:textSize="16sp"
         android:text="@string/tv_book_codigo" />
 
     <TextView
@@ -47,7 +47,9 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/textViewAutor"
         android:layout_alignTop="@+id/textViewAutor"
-        android:text="@string/tv_book_autor" />
+        android:layout_marginBottom="5dp"
+        android:textSize="@dimen/fontSize"
+        android:textColor="@color/blue_500" />
 
     <TextView
         android:id="@+id/textViewEditorial"
@@ -62,6 +64,9 @@
         android:id="@+id/tv_book_editorial"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:textSize="@dimen/fontSize"
+        android:textColor="@color/blue_500"
         android:layout_toRightOf="@+id/textViewEditorial"
         android:layout_alignTop="@+id/textViewEditorial" />
 
@@ -80,6 +85,8 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/textViewCiudad"
         android:layout_alignTop="@+id/textViewCiudad"
+        android:layout_marginBottom="5dp"
+        android:textSize="@dimen/fontSize"
         android:text="@string/tv_book_lugar" />
 
     <TextView
@@ -97,6 +104,8 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/textViewAnio"
         android:layout_alignTop="@+id/textViewAnio"
+        android:layout_marginBottom="5dp"
+        android:textSize="@dimen/fontSize"
         android:text="@string/tv_book_fecha" />
 
     <TextView
@@ -114,6 +123,8 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/textViewPaginas"
         android:layout_alignTop="@+id/textViewPaginas"
+        android:layout_marginBottom="5dp"
+        android:textSize="@dimen/fontSize"
         android:text="@string/tv_book_paginas" />
 
 
@@ -148,6 +159,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/textViewTemas"
-        android:layout_alignTop="@+id/textViewTemas" />
+        android:layout_alignTop="@+id/textViewTemas"
+        android:textColor="@color/blue_500"
+        android:textSize="@dimen/fontSize" />
 
 </RelativeLayout>

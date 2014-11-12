@@ -2,6 +2,8 @@ package com.vanessapr.appbibliotecafain.fragments;
 
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Paint;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
@@ -12,8 +14,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.vanessapr.appbibliotecafain.BooksActivity;
 import com.vanessapr.appbibliotecafain.R;
 import com.vanessapr.appbibliotecafain.models.Libro;
 import com.vanessapr.appbibliotecafain.utils.MessageDialog;
@@ -30,11 +34,13 @@ import java.net.URL;
 /**
  * Created by Milagros on 27/10/2014.
  */
-public class BookFragment extends Fragment {
+public class BookFragment extends Fragment implements View.OnClickListener {
     private static final String TAG = "BookFragment";
     public static final String EXTRA_POSITION_BOOK = BookFragment.class.getName() + ".EXTRA_POSITION_BOOK";
     private ViewGroup mContainer;
     private ProgressDialog mProgress;
+    private TextView tvAutor, tvEditorial, tvTemas;
+    private Intent mIntent;
     private File file;
     private Libro mCurrentPosition = null;
 
@@ -66,7 +72,7 @@ public class BookFragment extends Fragment {
         super.onStart();
         Log.i(TAG, "onStart..." + mCurrentPosition);
         if(mCurrentPosition != null) {
-            displayBookSingle(mCurrentPosition);
+            displayBookSingle(mCurrentPosition, mIntent);
         }
 
     }
@@ -79,58 +85,106 @@ public class BookFragment extends Fragment {
         outState.putParcelable(EXTRA_POSITION_BOOK, mCurrentPosition);
     }
 
-    public void displayBookSingle(Libro libro) {
-        Log.i(TAG, "my activity: " + getActivity());
-        mCurrentPosition = libro;
-        mContainer.removeAllViews();
-        mContainer.addView(libro.render(getActivity(),libro.getTipo()));
-        DownloadFile();
-    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(getActivity().findViewById(R.id.tv_book_autor) != null) {
+            tvAutor = (TextView) getActivity().findViewById(R.id.tv_book_autor);
+            tvAutor.setOnClickListener(this);
+        }
 
-    private void DownloadFile() {
-        // if exists button, download file
+        if(getActivity().findViewById(R.id.tv_book_editorial) != null) {
+            tvEditorial = (TextView) getActivity().findViewById(R.id.tv_book_editorial);
+            tvEditorial.setOnClickListener(this);
+        }
+
+        if(getActivity().findViewById(R.id.tv_book_temas) != null) {
+            tvTemas = (TextView) getActivity().findViewById(R.id.tv_book_temas);
+            tvTemas.setOnClickListener(this);
+        }
+
         if(getActivity().findViewById(R.id.btnDownloadCD) != null) {
             Button btnDownload = (Button) getActivity().findViewById(R.id.btnDownloadCD);
-            btnDownload.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    MessageDialog message = new MessageDialog(getActivity());
+            btnDownload.setOnClickListener(this);
+        }
 
-                    if(Systems.checkStatusConnectionNetwork(getActivity().getApplicationContext())) {
-                        if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-                            mProgress = new ProgressDialog(getActivity());
-                            mProgress.setMessage("Descargando...");
-                            mProgress.setIndeterminate(false);
-                            mProgress.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-                            mProgress.setCancelable(true);
-                            mProgress.setProgress(0);
-                            mProgress.setMax(100);
+    }
 
-                            final TaskDownloadFile task = new TaskDownloadFile();
-                            task.execute("http://ivica.org/bibliotecafain/" + mCurrentPosition.getUrlPdf());
+    public void displayBookSingle(Libro libro, Intent intent) {
+        Log.i(TAG, "my activity: " + getActivity());
+        mCurrentPosition = libro;
+        mIntent = intent;
+        mContainer.removeAllViews();
+        mContainer.addView(libro.render(getActivity(),libro.getTipo()));
+    }
 
-                            mProgress.setOnCancelListener(new DialogInterface.OnCancelListener() {
-                                @Override
-                                public void onCancel(DialogInterface dialogInterface) {
-                                    task.cancel(true);
-                                    if(file.exists())
-                                        file.delete();
-                                    Toast.makeText(getActivity(), "Descarga cancelada", Toast.LENGTH_LONG).show();
-                                }
-                            });
 
-                        } else {
-                            Log.e(TAG, "SDCard: "+ Environment.getExternalStorageState());
-                            message.display("Su tarjeta SDCard no está disponible");
-                        }
+    @Override
+    public void onClick(View view) {
+        StringBuilder where = new StringBuilder();
+
+        switch (view.getId()) {
+            case R.id.tv_book_autor:
+                String autor = tvAutor.getText().toString();
+                where.append("autor_libro = '").append(autor).append("'");
+
+                mIntent.putExtra(BooksActivity.EXTRA_WHERE, where.toString());
+                mIntent.putExtra(BooksActivity.EXTRA_ORDERBY, "autor_libro, titulo");
+                startActivity(mIntent);
+                break;
+
+            case R.id.tv_book_editorial:
+                String editorial = tvEditorial.getText().toString();
+                where.append("editorial = '").append(editorial).append("'");
+
+                mIntent.putExtra(BooksActivity.EXTRA_WHERE, where.toString());
+                mIntent.putExtra(BooksActivity.EXTRA_ORDERBY, "autor_libro, titulo");
+                startActivity(mIntent);
+                break;
+
+            case R.id.tv_book_temas:
+                String temas = tvTemas.getText().toString();
+                where.append("descriptores = '").append(temas).append("'");
+                mIntent.putExtra(BooksActivity.EXTRA_WHERE, where.toString());
+                mIntent.putExtra(BooksActivity.EXTRA_ORDERBY, "autor_libro, titulo");
+                startActivity(mIntent);
+                break;
+
+            case R.id.btnDownloadCD:
+                MessageDialog message = new MessageDialog(getActivity());
+
+                if(Systems.checkStatusConnectionNetwork(getActivity().getApplicationContext())) {
+                    if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+                        mProgress = new ProgressDialog(getActivity());
+                        mProgress.setMessage("Descargando...");
+                        mProgress.setIndeterminate(false);
+                        mProgress.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+                        mProgress.setCancelable(true);
+                        mProgress.setProgress(0);
+                        mProgress.setMax(100);
+
+                        final TaskDownloadFile task = new TaskDownloadFile();
+                        task.execute("http://ivica.org/bibliotecafain/" + mCurrentPosition.getUrlPdf());
+
+                        mProgress.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                            @Override
+                            public void onCancel(DialogInterface dialogInterface) {
+                                task.cancel(true);
+                                if(file.exists())
+                                    file.delete();
+                                Toast.makeText(getActivity(), "Descarga cancelada", Toast.LENGTH_LONG).show();
+                            }
+                        });
+
                     } else {
-                        message.display("No esta conectado a Internet");
+                        Log.e(TAG, "SDCard: "+ Environment.getExternalStorageState());
+                        message.display("Su tarjeta SDCard no está disponible");
                     }
-
+                } else {
+                    message.display("No esta conectado a Internet");
                 }
-            });
-        } else {
-            Log.e(TAG, "no existe");
+
+                break;
         }
     }
 

@@ -27,6 +27,9 @@
         android:id="@+id/tv_book_editorial"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/blue_500"
+        android:layout_marginBottom="5dp"
+        android:textSize="@dimen/fontSize"
         android:layout_toRightOf="@+id/textViewEditorial"
         android:layout_alignTop="@+id/textViewEditorial" />
 
@@ -43,6 +46,8 @@
         android:id="@+id/tv_book_ciudad"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textSize="@dimen/fontSize"
+        android:layout_marginBottom="5dp"
         android:layout_toRightOf="@+id/textViewCiudad"
         android:layout_alignTop="@+id/textViewCiudad"
         android:text="@string/tv_book_lugar" />
@@ -62,6 +67,8 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/textViewAnio"
         android:layout_alignTop="@+id/textViewAnio"
+        android:layout_marginBottom="5dp"
+        android:textSize="@dimen/fontSize"
         android:text="@string/tv_book_fecha" />
 
     <TextView
@@ -79,6 +86,8 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/textViewPaginas"
         android:layout_alignTop="@+id/textViewPaginas"
+        android:layout_marginBottom="5dp"
+        android:textSize="@dimen/fontSize"
         android:text="@string/tv_book_paginas" />
 
 
@@ -113,6 +122,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/textViewTemas"
-        android:layout_alignTop="@+id/textViewTemas" />
+        android:layout_alignTop="@+id/textViewTemas"
+        android:textColor="@color/blue_500"
+        android:textSize="@dimen/fontSize" />
 
 </RelativeLayout>

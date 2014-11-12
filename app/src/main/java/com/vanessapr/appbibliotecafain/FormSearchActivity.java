@@ -3,6 +3,7 @@ package com.vanessapr.appbibliotecafain;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -17,6 +18,7 @@ import com.vanessapr.appbibliotecafain.utils.MessageDialog;
 public class FormSearchActivity extends BaseActivity implements View.OnClickListener,
         AdapterView.OnItemSelectedListener {
 
+    private static final String TAG = "FormSearchActivity";
     private EditText txtTitulo, txtAutor, txtDescriptores;
     private Spinner spinnerType, spinnerOrder;
     private CheckBox chAll;
@@ -62,42 +64,54 @@ public class FormSearchActivity extends BaseActivity implements View.OnClickList
 
     @Override
     public void onClick(View view) {
-        if(chAll.isChecked() || validate()) {
-            StringBuilder conditions = new StringBuilder();
+        StringBuilder conditions = new StringBuilder("");
 
-            if ( !txtTitulo.getText().toString().trim().equals("") ) {
-                conditions.append("( titulo LIKE '%")
-                        .append(txtTitulo.getText().toString().trim()).append("%'");
-            }
+        if(!chAll.isChecked()) {
+            if(validate()) {
+                if ( !txtTitulo.getText().toString().trim().equals("") ) {
+                    conditions.append("( titulo LIKE '%")
+                            .append(txtTitulo.getText().toString().trim()).append("%'");
+                }
 
-            if ( !txtAutor.getText().toString().trim().equals("") ) {
-                conditions.append((conditions.toString().equals(""))? "( " : " OR ");
-                conditions.append("autor_libro LIKE '%")
-                        .append(txtAutor.getText().toString().trim()).append("%'");
-            }
+                if ( !txtAutor.getText().toString().trim().equals("") ) {
+                    conditions.append((conditions.toString().equals(""))? "( " : " OR ");
+                    conditions.append("autor_libro LIKE '%")
+                            .append(txtAutor.getText().toString().trim()).append("%'");
+                }
 
-            if ( !txtDescriptores.getText().toString().trim().equals("") ) {
-                conditions.append((conditions.equals(""))? "( " : " OR ");
-                conditions.append("descriptores LIKE '%")
-                        .append(txtDescriptores.getText().toString().trim()).append("'%");
-            }
+                if ( !txtDescriptores.getText().toString().trim().equals("") ) {
+                    conditions.append((conditions.toString().equals(""))? "( " : " OR ");
+                    conditions.append("descriptores LIKE '%")
+                            .append(txtDescriptores.getText().toString().trim()).append("%'");
+                }
 
-            if(!conditions.toString().equals("")) {
-                conditions.append(" ) AND ( ").append(type).append(" )");
+                if(!conditions.toString().equals("")) {
+                    conditions.append(" ) AND ( ").append(type).append(" )");
+                } else {
+                    conditions.append("(").append(type).append(")");
+                }
+
+                Intent  intent= new Intent(FormSearchActivity.this, BooksActivity.class);
+                intent.putExtra(BooksActivity.EXTRA_WHERE, conditions.toString());
+                intent.putExtra(BooksActivity.EXTRA_ORDERBY, orderBy);
+                startActivity(intent);
+
             } else {
-                conditions.append("(").append(type).append(")");
+                // launch message
+                MessageDialog message = new MessageDialog(FormSearchActivity.this);
+                message.display("Especifique al menos un campo para buscar");
             }
+
+        } else {
+            conditions.append("(").append(type).append(")");
 
             Intent  intent= new Intent(FormSearchActivity.this, BooksActivity.class);
             intent.putExtra(BooksActivity.EXTRA_WHERE, conditions.toString());
             intent.putExtra(BooksActivity.EXTRA_ORDERBY, orderBy);
             startActivity(intent);
-
-        } else {
-            // launch message
-            MessageDialog message = new MessageDialog(FormSearchActivity.this);
-            message.display("Especifique al menos un campo para buscar");
         }
+
+
     }
     private boolean validate() {
         if ( txtTitulo.getText().toString().trim().equals("") &&
