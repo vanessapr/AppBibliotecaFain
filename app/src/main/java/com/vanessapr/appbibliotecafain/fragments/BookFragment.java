@@ -85,9 +85,13 @@ public class BookFragment extends Fragment implements View.OnClickListener {
         outState.putParcelable(EXTRA_POSITION_BOOK, mCurrentPosition);
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
+    public void displayBookSingle(Libro libro, Intent intent) {
+        Log.i(TAG, "my activity: " + getActivity());
+        mCurrentPosition = libro;
+        mIntent = intent;
+        mContainer.removeAllViews();
+        mContainer.addView(libro.render(getActivity(),libro.getTipo()));
+
         if(getActivity().findViewById(R.id.tv_book_autor) != null) {
             tvAutor = (TextView) getActivity().findViewById(R.id.tv_book_autor);
             tvAutor.setOnClickListener(this);
@@ -107,15 +111,6 @@ public class BookFragment extends Fragment implements View.OnClickListener {
             Button btnDownload = (Button) getActivity().findViewById(R.id.btnDownloadCD);
             btnDownload.setOnClickListener(this);
         }
-
-    }
-
-    public void displayBookSingle(Libro libro, Intent intent) {
-        Log.i(TAG, "my activity: " + getActivity());
-        mCurrentPosition = libro;
-        mIntent = intent;
-        mContainer.removeAllViews();
-        mContainer.addView(libro.render(getActivity(),libro.getTipo()));
     }
 
 
