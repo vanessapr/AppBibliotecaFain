@@ -26,17 +26,9 @@ public class BookSingleActivity extends BaseActivity {
         bookfragment = (BookFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.fragment_single_book);
 
-        //bookfragment.setRetainInstance(true);
         Intent intent = new Intent(BookSingleActivity.this, BooksActivity.class);
         bookfragment.displayBookSingle(libro, intent);
 
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        //Intent intent = new Intent(BookSingleActivity.this, BooksActivity.class);
-        //bookfragment.onClickListenerLinkText(intent);
     }
 
 }
