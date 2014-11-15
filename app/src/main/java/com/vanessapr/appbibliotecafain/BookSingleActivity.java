@@ -158,10 +158,12 @@ public class BookSingleActivity extends BaseActivity implements View.OnClickList
 
                 } else {
                     Log.e(TAG, "SDCard: "+ Environment.getExternalStorageState());
+                    task.cancel(true);
                     message.display("Su tarjeta SDCard no está disponible");
                 }
 
             } else {
+                task.cancel(true);
                 message.display("No esta conectado a Internet");
             }
 
