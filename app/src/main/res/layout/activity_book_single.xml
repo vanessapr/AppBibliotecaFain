@@ -2,16 +2,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="16dp"
     android:id="@+id/container_single_book"
     android:fillViewport="true"
     tools:context="com.vanessapr.appbibliotecafain.BookSingleActivity">
-
-    <fragment
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:name="com.vanessapr.appbibliotecafain.fragments.BookFragment"
-        android:id="@+id/fragment_single_book"
-        android:layout_gravity="center_horizontal"
-        tools:layout="@layout/fragment_book" />
 
 </ScrollView>

@@ -1,12 +1,8 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ListView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/listview_books"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/fragment_container">
+    android:cacheColorHint="@android:color/transparent"
+    android:dividerHeight="1dp">
 
-    <fragment
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:name="com.vanessapr.appbibliotecafain.fragments.BooksListFragment"
-        android:id="@+id/fragment_bookslist" />
-
-</FrameLayout>
+</ListView>

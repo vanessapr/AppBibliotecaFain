@@ -30,6 +30,11 @@ public class LibroAdapter extends ArrayAdapter<Libro> {
         return libros.size();
     }
 
+    @Override
+    public Libro getItem(int position) {
+        return libros.get(position);
+    }
+
     public View getView(int position, View convertView, ViewGroup parent) {
         PlaceHolder placeHolder;
 

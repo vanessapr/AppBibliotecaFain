@@ -8,53 +8,63 @@ import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
 
-import com.vanessapr.appbibliotecafain.fragments.BookFragment;
-import com.vanessapr.appbibliotecafain.fragments.BooksListFragment;
 import com.vanessapr.appbibliotecafain.models.Libro;
+import com.vanessapr.appbibliotecafain.models.LibroAdapter;
+import com.vanessapr.appbibliotecafain.models.LibroModel;
+import com.vanessapr.appbibliotecafain.utils.MessageDialog;
+
+import java.util.ArrayList;
 
 
-public class BooksActivity extends BaseActivity implements
-        BooksListFragment.onBooksListSelectListener {
+public class BooksActivity extends BaseActivity  {
     private static final String TAG = "BooksActivity";
     public static final String EXTRA_WHERE = BooksActivity.class.getName() + ".where";
     public static final String EXTRA_ORDERBY = BooksActivity.class.getName() + ".orderBy";
+    private ListView lvBooks;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_books);
-        Log.i(TAG, "onCreate... ");
-
-        BooksListFragment booksListFragment = (BooksListFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.fragment_bookslist);
+        Log.d(TAG, "onCreate... ");
 
         String where = getIntent().getStringExtra(EXTRA_WHERE);
         String orderBy = getIntent().getStringExtra(EXTRA_ORDERBY);
-        booksListFragment.displayBooksList(where, orderBy);
 
+        lvBooks = (ListView) findViewById(R.id.listview_books);
+
+        displayBooksList(where, orderBy);
     }
 
 
-    @Override
-    public void onBookSelected(Libro libro) {
-        BookFragment bookFragment = (BookFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.fragment_book);
+    public void displayBooksList(String where, String orderBy) {
+        LibroModel model = new LibroModel(this);
+        ArrayList<Libro> data = model.getLibros(where, orderBy);
 
-        Log.i(TAG, "onBookSelected: " + bookFragment);
-
-        if(bookFragment != null && bookFragment.getActivity() != null) {
-            Intent intent = new Intent(BooksActivity.this, BooksActivity.class);
-            bookFragment.displayBookSingle(libro, intent);
-            //bookFragment.setRetainInstance(true);
+        if(data.size() > 0) {
+            LibroAdapter adapter = new LibroAdapter(this, data);
+            lvBooks.setAdapter(adapter);
+            lvBooks.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Libro libro = (Libro) parent.getItemAtPosition(position);
+                    Intent intent = new Intent(BooksActivity.this, BookSingleActivity.class);
+                    intent.putExtra(BookSingleActivity.EXTRA_BOOK, libro);
+                    startActivity(intent);
+                }
+            });
 
         } else {
-            Intent intent = new Intent(BooksActivity.this, BookSingleActivity.class);
-            intent.putExtra(BookSingleActivity.EXTRA_BOOK, libro);
-            startActivity(intent);
-         }
+            MessageDialog message = new MessageDialog(this, true);
+            message.display("No hay resultados que mostrar");
+        }
 
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -73,8 +83,7 @@ public class BooksActivity extends BaseActivity implements
             }
 
             @Override
-            public boolean onQueryTextSubmit(String arg0) {
-                String query = arg0;
+            public boolean onQueryTextSubmit(String query) {
                 StringBuilder where = new StringBuilder();
                 where.append("autor_libro LIKE '%").append(query).append("%' ");
                 where.append("OR titulo LIKE '%").append(query).append("%' ");
