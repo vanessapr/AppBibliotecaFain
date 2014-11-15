@@ -2,8 +2,10 @@ package com.vanessapr.appbibliotecafain;
 
 
 import android.content.Intent;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,7 +26,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         txtBusqueda = (EditText) findViewById(R.id.txt_busqueda);
         btnSeartch = (Button) findViewById(R.id.btnSearch);
         btnSearchAdvanced = (Button) findViewById(R.id.btnSearchAdvanced);
-
     }
 
     @Override

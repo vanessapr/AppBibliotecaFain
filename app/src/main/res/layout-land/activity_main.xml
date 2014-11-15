@@ -11,15 +11,15 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="400dp"
+            android:layout_width="290dp"
+            android:layout_height="match_parent"
             android:id="@+id/imageView"
             android:src="@drawable/portada"
             android:scaleType="centerCrop"
             android:contentDescription="@string/descripcion_image" />
 
         <TextView
-            android:layout_below="@+id/imageView"
+            android:layout_toRightOf="@+id/imageView"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="16dp"
             android:layout_marginLeft="16dp"
@@ -31,6 +31,7 @@
             android:id="@+id/textView" />
 
         <EditText
+            android:layout_toRightOf="@+id/imageView"
             android:layout_below="@+id/textView"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
@@ -45,6 +46,7 @@
             android:gravity="center"
             android:id="@+id/container_button"
             android:layout_below="@+id/txt_busqueda"
+            android:layout_toRightOf="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -72,7 +74,9 @@
             android:text="@string/copyright"
             android:layout_alignParentBottom="true"
             android:layout_below="@+id/container_button"
-            android:gravity="center"
-            />
+            android:layout_toRightOf="@+id/imageView"
+            android:gravity="center"/>
+
     </RelativeLayout>
+
 </ScrollView>

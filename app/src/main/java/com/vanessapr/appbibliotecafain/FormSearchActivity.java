@@ -114,14 +114,9 @@ public class FormSearchActivity extends BaseActivity implements View.OnClickList
 
     }
     private boolean validate() {
-        if ( txtTitulo.getText().toString().trim().equals("") &&
+        return !(txtTitulo.getText().toString().trim().equals("") &&
                 txtAutor.getText().toString().trim().equals("") &&
-                txtDescriptores.getText().toString().trim().equals("") ) {
-            return false;
-
-        } else {
-            return true;
-        }
+                txtDescriptores.getText().toString().trim().equals(""));
     }
 
     @Override

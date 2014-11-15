@@ -7,6 +7,7 @@
     <string name="txt_busqueda">Escriba lo que desea buscar</string>
     <string name="btn_search">BUSCAR</string>
     <string name="btn_search_advanced">BÚSQUEDA AVANZADA</string>
+    <string name="descripcion_image">Universidad Nacional Jorge Basadre Grohmann</string>
 
     <!-- String para templates -->
     <string name="tv_book_titulo">Sistemas de Monitoreo de Estabilidad de Taludes en Minería Superficial Toquepala</string>

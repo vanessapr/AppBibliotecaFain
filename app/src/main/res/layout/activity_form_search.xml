@@ -76,23 +76,50 @@
             android:layout_alignLeft="@+id/txtFormAutor"
             android:layout_alignStart="@+id/txtFormAutor" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:layout_below="@+id/txtDescriptores"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/form_field_typeBooks"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:id="@+id/tvBuscarEn" />
+
         <Spinner
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:prompt="@string/form_field_typeBooks"
             android:id="@+id/sp_type_books"
-            android:layout_below="@+id/txtDescriptores" />
+            android:layout_alignTop="@+id/tvBuscarEn"
+            android:layout_alignLeft="@+id/sp_orderby" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:layout_below="@+id/tvBuscarEn"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/form_field_orderby"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:id="@+id/tvOrderBy" />
 
         <Spinner
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:prompt="@string/form_field_orderby"
             android:id="@+id/sp_orderby"
-            android:layout_below="@+id/sp_type_books" />
+            android:layout_alignTop="@+id/tvOrderBy"
+            android:layout_toRightOf="@+id/tvOrderBy" />
 
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
             android:text="@string/form_field_all"
             android:id="@+id/chAll"
             android:layout_below="@+id/sp_orderby" />
